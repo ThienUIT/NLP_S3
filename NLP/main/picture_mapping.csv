@@ -1,0 +1,17 @@
+picture_name,description
+NLP/main/figure3.png.png,mô tả 3 cách để tính toán xem một từ quan trọng với chủ đề như thế nào
+NLP/main/figure7.png,Các khái niệm dọc theo các Trục ngữ nghĩa được trích xuất bởi S3 trong tập dữ liệu Bài báo Học máy ArXiv
+NLP/main/table2.png,các topic trong bài báo ArXiv được trích xuất bởi S3
+NLP/main/topic_diversity.png,Diversity scores across all models datasets encoders and numbers of topics
+NLP/main/topic_coherence.png,Aggregate coherence scores across all models datasets encoders and numbers of topics (geometric mean of internal and external word embedding coherence)
+NLP/main/robustness_wecin.png,WECin scores across all models datasets encoders and numbers of topics
+NLP/main/robustness_wecex.png,WECex scores across all models datasets encoders and numbers of topics
+NLP/main/runtime.png,Runtime in seconds for all models datasets encoders and numbers of topics
+NLP/main/stop_word.png,propotion of stop words
+NLP/main/PCA_vs_ICA.png,slide 5
+NLP/main/So_do_S3.png,slide 17
+NLP/main/ICA.png,slide 3
+NLP/main/MaTranKhuTron.png,slide 21
+NLP/main/MaTranTronA.png,slide 21
+NLP/main/VCW.png,slide 23
+NLP/main/PCA.jpeg, slide 18

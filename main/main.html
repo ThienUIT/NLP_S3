@@ -90,11 +90,13 @@
       </table>
       <p style="margin-top:.8em; font-size:.6em; color:#94a3b8;">← → chuyển slide · <b>S</b> speaker notes · <b>F</b> toàn màn hình · <b>ESC</b> tổng quan · <b>M</b> menu</p>
     </div>
-    <aside class="notes">Huy: "Chào thầy cô và các bạn. Hôm nay nhóm mình báo cáo nghiên cứu S³ — Semantic Signal Separation của các tác giả Đại học Aarhus, công bố tại ACL 2025. Mục tiêu cốt lõi: xây dựng phương pháp topic modeling hoạt động trực tiếp trong không gian nhúng neural bằng cách tiếp cận hình học tuyến tính. Để hiểu cơ chế mô hình, ta bắt đầu từ một bài toán nền tảng trong xử lý tín hiệu."</aside>
+    <aside class="notes">Chào thầy cô và các bạn. Hôm nay nhóm mình báo cáo nghiên cứu S³ — Semantic Signal Separation của các tác giả Đại học Aarhus, công bố tại ACL 2025. Mục tiêu cốt lõi: xây dựng phương pháp topic modeling hoạt động trực tiếp trong không gian nhúng neural bằng cách tiếp cận hình học tuyến tính. Để hiểu cơ chế mô hình, ta bắt đầu từ một bài toán nền tảng trong xử lý tín hiệu.</aside>
   </section>
 
   <!-- S1b Agenda -->
   <section data-background-gradient="linear-gradient(135deg,#f0fdfa 0%,#eff6ff 100%)">
+    <p style="margin:0 0 .1em;font-weight:800;color:var(--accent);font-size:1.05em;">S³ — Semantic Signal Separation</p>
+    <p style="margin:0 0 .6em;color:#64748b;font-size:.72em;">Phân tích chủ đề của văn bản sử dụng thuật toán ICA</p>
     <h2>Nội dung trình bày</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;margin-top:1em;text-align:left;">
       <div class="step" style="display:flex;align-items:center;gap:.7em;padding:1.1em 1.2em;min-height:2.6em;font-size:1.25em;"><span style="flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;">1</span><b>Bài toán nền tảng</b></div>
@@ -107,50 +109,38 @@
   <!-- S2 Cocktail party -->
   <section>
     <h2>Bài toán Bữa tiệc Cocktail &amp; Thuật toán ICA</h2>
-    <p style="font-size:.92em;">Nhiều nguồn phát âm thanh độc lập hoạt động cùng lúc; các micro chỉ ghi được một bản trộn tuyến tính (mixed signal). Nhiệm vụ của thuật toán: khôi phục các nguồn gốc khi không có thông tin trước về nguồn phát — bài toán <b>Tách nguồn mù (Blind Source Separation)</b>.</p>
-    <svg class="diagram" viewBox="0 0 760 250" style="width:min(760px,90%)" role="img" aria-label="Ba nguồn độc lập bị trộn rồi được ICA tách lại">
-      <text x="90" y="30" font-size="14" fill="#2563eb" font-weight="700" text-anchor="middle">3 nguồn độc lập</text>
-      <g font-size="15" fill="#1e293b">
-        <rect x="30" y="50" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="75" text-anchor="middle">giọng A</text>
-        <rect x="30" y="110" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="135" text-anchor="middle">giọng B</text>
-        <rect x="30" y="170" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="195" text-anchor="middle">giọng C</text>
-      </g>
-      <line x1="150" y1="70" x2="300" y2="120" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
-      <line x1="150" y1="130" x2="300" y2="130" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
-      <line x1="150" y1="190" x2="300" y2="140" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
-      <rect x="300" y="95" width="130" height="70" rx="10" fill="#fef2f2" stroke="#dc2626"/>
-      <text x="365" y="122" font-size="14" fill="#dc2626" text-anchor="middle" font-weight="700">TRỘN</text>
-      <text x="365" y="143" font-size="11" fill="#64748b" text-anchor="middle">mix1,2,3 (micro)</text>
-      <line x1="430" y1="130" x2="500" y2="130" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
-      <rect x="500" y="95" width="90" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a"/>
-      <text x="545" y="126" font-size="15" fill="#16a34a" text-anchor="middle" font-weight="800">ICA</text>
-      <text x="545" y="146" font-size="10" fill="#64748b" text-anchor="middle">gỡ trộn</text>
-      <g font-size="13" fill="#16a34a" font-weight="700">
-        <line x1="590" y1="115" x2="650" y2="75" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
-        <line x1="590" y1="130" x2="650" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
-        <line x1="590" y1="145" x2="650" y2="185" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
-        <text x="655" y="80">→ A</text><text x="655" y="135">→ B</text><text x="655" y="190">→ C</text>
-      </g>
-      <defs>
-        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
-        <marker id="arg2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/></marker>
-      </defs>
-    </svg>
+    <div class="box idea" style="font-size:.88em;"><span class="lbl">BÀI TOÁN TÁCH NGUỒN MÙ (BLIND SOURCE SEPARATION)</span>Trong một bữa tiệc, khi có nhiều nguồn âm thanh độc lập hoạt động cùng lúc, các micro chỉ ghi được một bản trộn tuyến tính (mixed signal).<br>→ Nhiệm vụ của hệ thống là phải khôi phục các nguồn gốc khi không có thông tin trước về nguồn phát.</div>
+    <img src="/main/ICA.png" alt="Bài toán bữa tiệc cocktail: các nguồn độc lập bị trộn rồi được ICA tách lại" style="display:block;margin:.4em auto 0;max-width:40%;max-height:44vh;border-radius:8px;">
     <div class="box key" style="font-size:.82em;"><span class="lbl">THUẬT TOÁN ICA (Independent Component Analysis)</span>Dựa trên giả định các nguồn gốc là các biến ngẫu nhiên độc lập thống kê (statistically independent), ICA tính ma trận giải trộn để tối đa hoá tính độc lập <b>→ khôi phục chính xác tín hiệu gốc.</b></div>
-    <aside class="notes">Huy: "Bài toán kinh điển trong xử lý tín hiệu — Cocktail Party: nhiều nguồn âm thanh độc lập, micro chỉ ghi được bản trộn tuyến tính. Phải khôi phục nguồn gốc khi không biết trước nguồn phát — Tách nguồn mù (Blind Source Separation). Thuật toán ICA giả định các nguồn độc lập thống kê, tính ma trận giải trộn để tối đa hoá tính độc lập, từ đó khôi phục chính xác tín hiệu gốc."</aside>
+    <aside class="notes">Bài toán kinh điển trong xử lý tín hiệu — Cocktail Party: nhiều nguồn âm thanh độc lập, micro chỉ ghi được bản trộn tuyến tính. Phải khôi phục nguồn gốc khi không biết trước nguồn phát — Tách nguồn mù (Blind Source Separation). Thuật toán ICA giả định các nguồn độc lập thống kê, tính ma trận giải trộn để tối đa hoá tính độc lập, từ đó khôi phục chính xác tín hiệu gốc.</aside>
   </section>
 
   <!-- S3 Cầu nối -->
   <section data-background-gradient="linear-gradient(135deg,#f0fdfa 0%,#eff6ff 100%)">
     <h2>Trong văn bản: Văn bản là một bản trộn ngữ nghĩa</h2>
-    <div class="box idea">
-      Một tài liệu hiếm khi chỉ đại diện cho một chủ đề — nó là một <b>bản trộn</b> của nhiều chủ đề ẩn. Đóng góp của S³: <b>áp dụng logic tách tín hiệu âm thanh vào không gian embedding của văn bản</b>.
-    </div>
-    <div class="box key">
-      Thay vì gom cụm topic (clustering) như các mô hình hiện tại, S³ xem bài toán theo hướng mỗi chủ đề là một nguồn phát độc lập. <br>
-      Thuật toán áp dụng <b>FastICA </b> lên document embeddings để phân rã ma trận, mong muốn tìm ra các trục ngữ nghĩa (Semantic Axes), mỗi trục đại diện cho một chủ đề.
-    </div>
-    <aside class="notes">Huy: "Đóng góp đầu tiên của S³ là chuyển logic tách tín hiệu âm thanh sang không gian ngữ nghĩa văn bản. Một tài liệu là bản trộn của nhiều chủ đề ẩn. Thay vì clustering, S³ coi mỗi chủ đề là một nguồn phát độc lập; áp FastICA lên document embeddings để phân rã, tìm các vector cơ sở độc lập — gọi là các Trục ngữ nghĩa (Semantic Axes), mỗi trục là một chủ đề."</aside>
+    <svg class="diagram" viewBox="0 0 760 250" style="width:min(760px,90%)" role="img" aria-label="Văn bản là bản trộn ngữ nghĩa, ICA gỡ trộn thành các chủ đề">
+      <rect x="50" y="90" width="160" height="70" rx="10" fill="#fef2f2" stroke="#dc2626"/>
+      <text x="130" y="120" font-size="15" fill="#dc2626" text-anchor="middle" font-weight="700">VĂN BẢN</text>
+      <text x="130" y="141" font-size="11" fill="#64748b" text-anchor="middle">bản trộn ngữ nghĩa</text>
+      <line x1="210" y1="125" x2="320" y2="125" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar4)"/>
+      <rect x="320" y="90" width="110" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a"/>
+      <text x="375" y="121" font-size="15" fill="#16a34a" text-anchor="middle" font-weight="800">ICA</text>
+      <text x="375" y="141" font-size="10" fill="#64748b" text-anchor="middle">gỡ trộn</text>
+      <text x="565" y="35" font-size="14" fill="#16a34a" font-weight="700" text-anchor="middle">các chủ đề độc lập</text>
+      <g font-size="14" fill="#16a34a" font-weight="700">
+        <line x1="430" y1="115" x2="500" y2="70" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
+        <line x1="430" y1="125" x2="500" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
+        <line x1="430" y1="135" x2="500" y2="190" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
+        <rect x="505" y="50" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="75" text-anchor="middle">chủ đề A</text>
+        <rect x="505" y="110" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="135" text-anchor="middle">chủ đề B</text>
+        <rect x="505" y="170" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="195" text-anchor="middle">chủ đề C</text>
+      </g>
+      <defs>
+        <marker id="ar4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
+        <marker id="arg4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/></marker>
+      </defs>
+    </svg>
+    <aside class="notes">Đóng góp đầu tiên của S³ là chuyển logic tách tín hiệu âm thanh sang không gian ngữ nghĩa văn bản. Một tài liệu hiếm khi chỉ đại diện cho một chủ đề — nó là một bản trộn của nhiều chủ đề ẩn. Đóng góp của S³: áp dụng logic tách tín hiệu âm thanh vào không gian embedding của văn bản. Thay vì gom cụm topic (clustering) như các mô hình hiện tại, S³ xem bài toán theo hướng mỗi chủ đề là một nguồn phát độc lập; áp FastICA lên document embeddings để phân rã ma trận, tìm ra các trục ngữ nghĩa (Semantic Axes), mỗi trục đại diện cho một chủ đề.</aside>
   </section>
 
   <!-- S4 ICA vs PCA khái quát -->
@@ -160,8 +150,8 @@
       <div class="box tech"><span class="lbl">PCA (Phân tích Thành phần Chính - Principal Component Analysis) </span> Thuật toán được sử dụng để <b>giới hạn số lượng topic</b> bằng cách trích xuất ra các thành phần chính mang nhiều thông tin nhất.</div>
       <div class="box key"><span class="lbl">ICA (Phân tích Thành phần Độc lập - Independent Component Analysis)</span> Thuật toán dùng để <b>phân rã và tách các tín hiệu</b> đã bị trộn lẫn thành các thành phần tiềm ẩn độc lập.</div>
     </div>
-    <div class="box idea" style="font-size:.85em;"><span class="lbl">VÌ SAO S³ dùng ICA?</span>ICA giúp S³ tự động trích xuất các trục ngữ nghĩa từ dữ liệu — không cần con người định nghĩa thủ công bằng các cặp từ đối lập như nghiên cứu trước. Áp dụng thuật toán ICA, các chủ đề trở nên <b>tách biệt, không chồng lấn</b> và <b>diễn giải được</b> trực quan.</div>
-    <aside class="notes">Huy: "PCA tìm hướng phương sai lớn nhất, trục không tương quan — nhưng không tương quan chưa chắc độc lập, nên PCA chỉ nén, không tách nguồn. ICA đòi độc lập thống kê cao nhất → tách nguồn. Nhờ đó S³ tự trích xuất trục ngữ nghĩa mà không cần định nghĩa thủ công cặp từ đối lập; chiếu từ vựng lên trục ICA cho các chủ đề tách biệt, diễn giải được. Vậy Topic Modeling hiện hành gặp điểm nghẽn nào dẫn đến động lực phát triển S³? Xin mời [người 2] trình bày phần tiếp theo."</aside>
+    <img src="/main/PCA_vs_ICA.png" alt="So sánh PCA và ICA" style="display:block;margin:.6em auto 0;max-width:70%;max-height:42vh;border-radius:8px;">
+    <aside class="notes">PCA tìm hướng phương sai lớn nhất, trục không tương quan — nhưng không tương quan chưa chắc độc lập, nên PCA chỉ nén, không tách nguồn. ICA đòi độc lập thống kê cao nhất → tách nguồn. Nhờ đó S³ tự trích xuất trục ngữ nghĩa mà không cần định nghĩa thủ công cặp từ đối lập; chiếu từ vựng lên trục ICA cho các chủ đề tách biệt, diễn giải được. Vậy Topic Modeling hiện hành gặp điểm nghẽn nào dẫn đến động lực phát triển S³? Xin mời [người 2] trình bày phần tiếp theo.</aside>
   </section>
 
   <!-- ========================================================= -->
@@ -375,26 +365,14 @@ model.print_topics()</code></pre>
     </section>
     <section>
       <h2>Ý tưởng phương pháp — quan điểm tác giả</h2>
-      <div class="box idea">
-        <b>Semantic Signal Separation (S³)</b> — một phương pháp mới cho topic modeling trong <b>không gian embedding liên tục</b>, nhằm khắc phục các thách thức đã nêu của những phương pháp contextual topic modeling hiện có.
-      </div>
-      <div class="box key" style="font-size:.95em;">
-        Thuật toán quan niệm <b>topic là các trục ngữ nghĩa (semantic axes)</b> giải thích phần <b>biến thiên (variation)</b> đặc thù của một kho ngữ liệu, và phân rã các biểu diễn ngữ nghĩa thành:
-        <ul style="margin:.25em 0;">
-          <li>các thành phần ẩn <b>A</b> — giả định là các <b>topic</b>;</li>
-          <li>độ mạnh của mỗi thành phần trong từng tài liệu <b>S</b> — chính là <b>độ quan trọng topic trong tài liệu</b>.</li>
-        </ul>
-        Từ đó áp dụng <b>Independent Component Analysis (ICA)</b> để tách bạch các topic.
-      </div>
+      <img src="/main/So_do_S3.png" alt="Sơ đồ tổng quan phương pháp S³" style="display:block;margin:.5em auto 0;max-width:78%;max-height:52vh;border-radius:8px;">
       <p class="center"><small>↓ đi qua từng bước</small></p>
       <aside class="notes">Framing theo đúng §3 của bài — "tuyên ngôn" phương pháp trước khi vào chi tiết từng bước.</aside>
     </section>
     <section>
       <h2>Bước 1: Biểu diễn tài liệu + Whitening</h2>
       <p style="font-size:.9em;">Mã hoá tài liệu qua một mô hình <b>sentence transformer</b>. Gọi <b>X</b> là ma trận các biểu diễn (encodings) của tài liệu.</p>
-      <div class="box tech" style="font-size:.82em;"><span class="lbl">TIỀN XỬ LÝ: WHITENING</span>
-        Để chuẩn bị phân rã X bằng FastICA, cần áp dụng kỹ thuật <b>whitening</b> lên ma trận X — vì FastICA là mô hình <b>không nhiễu (noiseless)</b>. Do mặc định ICA tìm ra số thành phần (topic) <b>bằng đúng số chiều embedding</b>, nên phải <b>giảm chiều</b> embedding bằng cách lấy <b>N thành phần chính (principal components) đầu tiên</b>, với N = số topic mong muốn.
-      </div>
+      <img src="/main/PCA.jpeg" alt="Tiền xử lý Whitening: giảm chiều embedding bằng PCA" style="display:block;margin:.4em auto;max-width:55%;max-height:40vh;border-radius:8px;">
       <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python">from sklearn.decomposition import FastICA
 
 # FastICA: whitening + giảm chiều còn 20 topic, rồi tách nguồn độc lập
@@ -450,9 +428,9 @@ A = ica.mixing_
 
 # Ma trận tách C = A⁺ (unmixing matrix, N × D)
 C = np.linalg.pinv(A)</code></pre>
-      <div class="box key" style="font-size:.78em;"><span class="lbl">C GIỮ "QUY LUẬT" CÁC TRỤC NGỮ NGHĨA — DÙNG 2 VIỆC</span>
-        <b>1.</b> "Chiếu" toàn bộ từ vựng lên C để tính hệ số quan trọng của từ → <b>gọi tên được các topic</b>.<br>
-        <b>2.</b> Văn bản mới đưa vào → chỉ cần <b>nhân với C</b> là tính ngay hệ số phân bổ topic, <b>không cần huấn luyện lại</b>.
+      <div style="display:flex;align-items:center;justify-content:center;gap:1.2em;margin-top:.4em;flex-wrap:wrap;">
+        <img src="/main/MaTranTronA.png" alt="Ma trận trộn A" style="max-width:44%;max-height:40vh;border-radius:8px;">
+        <img src="/main/MaTranKhuTron.png" alt="Ma trận khử trộn C = A⁺" style="max-width:44%;max-height:40vh;border-radius:8px;">
       </div>
       <aside class="notes">Lưu ý code: A lấy bằng thuộc tính ica.mixing_ (không gọi như hàm). pinv = Moore–Penrose pseudo-inverse.</aside>
     </section>
@@ -477,10 +455,8 @@ C = np.linalg.pinv(A)
 
 # Chiếu từ lên các trục topic: W = V · Cᵀ  (số_từ × N)
 W = V @ C.T</code></pre>
-      <div class="box idea" style="font-size:.8em;"><span class="lbl">Ý NGHĨA</span>
-        Ma trận <b>C</b> chứa các <b>vector chỉ phương</b> của các trục chủ đề, ma trận <b>V</b> chứa các <b>vector từ vựng</b>. Nên với mỗi từ ngữ <i>j</i>, <b>tích vô hướng</b> của nó với một trục chính là <b>hình chiếu</b> của từ <i>j</i> lên bề mặt trục topic đó.
-        <br>⇒ <b>W<sub>jt</sub></b> là hình chiếu của vector từ ngữ <i>j</i> lên trục topic <b>T<sub>t</sub></b>. Dữ liệu này dùng để tính <b>word importance (bước 6)</b> ở các slide sau.</div>
-      <aside class="notes">Bắc cầu sang bước 6: từ W sẽ tính β. W[j,t] chính là vₜ trong hình học Figure 3.</aside>
+      <img src="/main/VCW.png" alt="Chiếu từ lên trục ngữ nghĩa: V, C, W" style="display:block;margin:.4em auto 0;max-width:74%;max-height:40vh;border-radius:8px;">
+      <aside class="notes">Ý nghĩa: Ma trận C chứa các vector chỉ phương của các trục chủ đề, ma trận V chứa các vector từ vựng. Nên với mỗi từ ngữ j, tích vô hướng của nó với một trục chính là hình chiếu của từ j lên bề mặt trục topic đó. ⇒ W_jt là hình chiếu của vector từ ngữ j lên trục topic T_t. Dữ liệu này dùng để tính word importance (bước 6) ở các slide sau. Bắc cầu sang bước 6: từ W sẽ tính β. W[j,t] chính là vₜ trong hình học Figure 3.</aside>
     </section>
 
     <!-- Bước 6 (word importance) — gộp vào chùm 6 bước -->

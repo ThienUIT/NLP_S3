@@ -8,3 +8,10 @@ main/robustness_wecin.png,WECin scores across all models datasets encoders and n
 main/robustness_wecex.png,WECex scores across all models datasets encoders and numbers of topics
 main/runtime.png,Runtime in seconds for all models datasets encoders and numbers of topics
 main/stop_word.png,propotion of stop words
+main/PCA_vs_ICA.png,slide 5
+main/So_do_S3.png,slide 17
+main/ICA.png,slide 3
+main/MaTranKhuTron.png,slide 21
+main/MaTranTronA.png,slide 21
+main/VCW.png,slide 23
+main/PCA.jpeg, slide 18

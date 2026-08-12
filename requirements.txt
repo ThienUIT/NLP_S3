@@ -1,0 +1,14 @@
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==25.0.1
+scikit-learn==1.7.2
+torch==2.10.0
+transformers==4.57.6
+sentencepiece==0.2.1
+protobuf==6.33.5
+safetensors==0.7.0
+tqdm==4.67.3
+pypdf==6.15.0
+pytest==8.4.2
+turftopic==0.27.1
+matplotlib==3.10.8

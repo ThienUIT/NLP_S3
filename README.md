@@ -95,3 +95,4 @@ Repo đã kết nối Git với Vercel → mỗi `git push` lên `main` sẽ **t
 - `Esc`: xem tổng quan tất cả slide (overview).
 - `F`: toàn màn hình · `S`: speaker notes · `M`: menu nhảy nhanh theo mục.
 - Thanh tiến trình + số thứ tự slide hiển thị ở góc dưới.
+

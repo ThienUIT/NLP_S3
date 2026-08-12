@@ -1,3 +1,5 @@
-# Claude Code
-.claude/
-.vercel
+.venv/
+artifacts/
+__pycache__/
+.pytest_cache/
+*.py[cod]

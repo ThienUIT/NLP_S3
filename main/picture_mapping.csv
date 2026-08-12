@@ -1,9 +1,3 @@
-picture_name,description
-main/figure3.png.png,mô tả 3 cách để tính toán xem một từ quan trọng với chủ đề như thế nào
-main/figure7.png,Các khái niệm dọc theo các Trục ngữ nghĩa được trích xuất bởi S3 trong tập dữ liệu Bài báo Học máy ArXiv
-main/table2.png,các topic trong bài báo ArXiv được trích xuất bởi S3
-main/topic_diversity.png,Diversity scores across all models datasets encoders and numbers of topics
-main/topic_coherence.png,Aggregate coherence scores across all models datasets encoders and numbers of topics (geometric mean of internal and external word embedding coherence)
-main/robustness_wecin.png,WECin scores across all models datasets encoders and numbers of topics
-main/robustness_wecex.png,WECex scores across all models datasets encoders and numbers of topics
-main/runtime.png,Runtime in seconds for all models datasets encoders and numbers of topics
+version https://git-lfs.github.com/spec/v1
+oid sha256:08d06663129fcd9f22fc16b965211b7a35b28dd095bebd519d40d2f8e9007131
+size 947

@@ -1,18 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/", "destination": "/NLP/main/main.html" },
-
-    { "source": "/nlp", "destination": "/NLP/main/main.html" },
-    { "source": "/main", "destination": "/NLP/main/main.html" },
-    { "source": "/2", "destination": "/NLP/main/main.html" },
-    { "source": "/1", "destination": "/NLP/temp/slides.html" },
-    { "source": "/3", "destination": "/NLP/temp/slides_3.html" },
-    { "source": "/g1", "destination": "/NLP/temp/google/google_slides_1.html" },
-    { "source": "/g2", "destination": "/NLP/temp/google/google_slides_1.html" },
-    { "source": "/g3", "destination": "/NLP/temp/google/google_slides.html" },
-
-    { "source": "/relation", "destination": "/relation/main/index.html" },
-    { "source": "/relation/main", "destination": "/relation/main/index.html" }
+    { "source": "/", "destination": "/main/main.html" },
+    { "source": "/main", "destination": "/main/main.html" },
+    { "source": "/2", "destination": "/main/main.html" },
+    { "source": "/1", "destination": "/temp/slides.html" },
+    { "source": "/3", "destination": "/temp/slides_3.html" },
+    { "source": "/g1", "destination": "/temp/google/google_slides_1.html" },
+    { "source": "/g2", "destination": "/temp/google/google_slides_1.html" },
+    { "source": "/g3", "destination": "/temp/google/google_slides.html" }
   ]
 }

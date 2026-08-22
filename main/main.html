@@ -78,80 +78,71 @@
       <span class="tag blue">ACL 2025 · Long Papers</span>
       <h1 style="margin:.3em 0 .1em;">S³ — Semantic Signal Separation</h1>
       <h3 style="color:var(--muted); font-weight:600;">Phân tích chủ đề của văn bản sử dụng thuật toán ICA</h3>
+      <p style="font-size:.82em; color:var(--ink); max-width:30em; margin:.6em auto 0; line-height:1.45;">Khám phá chủ đề (<b>topic modeling</b>) trực tiếp trong <b>không gian nhúng neural</b> bằng cách tiếp cận <b>hình học tuyến tính</b>. Để hiểu cơ chế, ta bắt đầu từ một bài toán nền tảng trong xử lý tín hiệu.</p>
       <p class="subtitle" style="margin-top:1.2em;">Kardos, Kostkan, Enevoldsen, Vermillet, Nielbo, Rocca · Aarhus University</p>
-      <table style="border-collapse:collapse; border:none; margin:1.2em auto 0; font-size:.7em; color:var(--ink); text-align:left; line-height:1.5;">
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0; font-weight:600; vertical-align:top; white-space:nowrap;">Lớp</td><td style="border:none; background:transparent; padding:.15em 0;">Ngôn ngữ học máy tính — CS2202.CH201</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0; font-weight:600; vertical-align:top; white-space:nowrap;">GVHD</td><td style="border:none; background:transparent; padding:.15em 0;">TS. Nguyễn Văn Kiệt</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0; font-weight:600; vertical-align:top; white-space:nowrap;">Nhóm</td><td style="border:none; background:transparent; padding:.15em 0;">7</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0; font-weight:600; vertical-align:top; white-space:nowrap;">Thành viên</td><td style="border:none; background:transparent; padding:.15em 0;">Đinh Trọng Hậu</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0;"></td><td style="border:none; background:transparent; padding:.15em 0;">Vũ Ánh Minh</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0;"></td><td style="border:none; background:transparent; padding:.15em 0;">Trần Đình Thiện</td></tr>
-        <tr><td style="border:none; background:transparent; padding:.15em 1em .15em 0;"></td><td style="border:none; background:transparent; padding:.15em 0;">Ngô Quang Huy</td></tr>
-      </table>
       <p style="margin-top:.8em; font-size:.6em; color:#94a3b8;">← → chuyển slide · <b>S</b> speaker notes · <b>F</b> toàn màn hình · <b>ESC</b> tổng quan · <b>M</b> menu</p>
     </div>
-    <aside class="notes">Chào thầy cô và các bạn. Hôm nay nhóm mình báo cáo nghiên cứu S³ — Semantic Signal Separation của các tác giả Đại học Aarhus, công bố tại ACL 2025. Mục tiêu cốt lõi: xây dựng phương pháp topic modeling hoạt động trực tiếp trong không gian nhúng neural bằng cách tiếp cận hình học tuyến tính. Để hiểu cơ chế mô hình, ta bắt đầu từ một bài toán nền tảng trong xử lý tín hiệu.</aside>
-  </section>
-
-  <!-- S1b Agenda -->
-  <section data-background-gradient="linear-gradient(135deg,#f0fdfa 0%,#eff6ff 100%)">
-    <p style="margin:0 0 .1em;font-weight:800;color:var(--accent);font-size:1.05em;">S³ — Semantic Signal Separation</p>
-    <p style="margin:0 0 .6em;color:#64748b;font-size:.72em;">Phân tích chủ đề của văn bản sử dụng thuật toán ICA</p>
-    <h2>Nội dung trình bày</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;margin-top:1em;text-align:left;">
-      <div class="step" style="display:flex;align-items:center;gap:.7em;padding:1.1em 1.2em;min-height:2.6em;font-size:1.25em;"><span style="flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;">1</span><b>Bài toán nền tảng</b></div>
-      <div class="step" style="display:flex;align-items:center;gap:.7em;padding:1.1em 1.2em;min-height:2.6em;font-size:1.25em;"><span style="flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;">2</span><b>Động lực &amp; Bối cảnh</b></div>
-      <div class="step" style="display:flex;align-items:center;gap:.7em;padding:1.1em 1.2em;min-height:2.6em;font-size:1.25em;"><span style="flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;">3</span><b>Thuật toán S³</b></div>
-      <div class="step" style="display:flex;align-items:center;gap:.7em;padding:1.1em 1.2em;min-height:2.6em;font-size:1.25em;"><span style="flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;">4</span><b>Thí nghiệm &amp; Kết quả</b></div>
-    </div>
+    <aside class="notes">Huy: "Chào thầy cô và các bạn. Hôm nay nhóm mình báo cáo nghiên cứu S³ — Semantic Signal Separation của các tác giả Đại học Aarhus, công bố tại ACL 2025. Mục tiêu cốt lõi: xây dựng phương pháp topic modeling hoạt động trực tiếp trong không gian nhúng neural bằng cách tiếp cận hình học tuyến tính. Để hiểu cơ chế mô hình, ta bắt đầu từ một bài toán nền tảng trong xử lý tín hiệu."</aside>
   </section>
 
   <!-- S2 Cocktail party -->
   <section>
-    <h2>Bài toán Bữa tiệc Cocktail &amp; Thuật toán ICA</h2>
-    <div class="box idea" style="font-size:.88em;"><span class="lbl">BÀI TOÁN TÁCH NGUỒN MÙ (BLIND SOURCE SEPARATION)</span>Trong một bữa tiệc, khi có nhiều nguồn âm thanh độc lập hoạt động cùng lúc, các micro chỉ ghi được một bản trộn tuyến tính (mixed signal).<br>→ Nhiệm vụ của hệ thống là phải khôi phục các nguồn gốc khi không có thông tin trước về nguồn phát.</div>
-    <img src="/NLP/main/ICA.png" alt="Bài toán bữa tiệc cocktail: các nguồn độc lập bị trộn rồi được ICA tách lại" style="display:block;margin:.4em auto 0;max-width:40%;max-height:44vh;border-radius:8px;">
-    <div class="box key" style="font-size:.82em;"><span class="lbl">THUẬT TOÁN ICA (Independent Component Analysis)</span>Dựa trên giả định các nguồn gốc là các biến ngẫu nhiên độc lập thống kê (statistically independent), ICA tính ma trận giải trộn để tối đa hoá tính độc lập <b>→ khôi phục chính xác tín hiệu gốc.</b></div>
-    <aside class="notes">Bài toán kinh điển trong xử lý tín hiệu — Cocktail Party: nhiều nguồn âm thanh độc lập, micro chỉ ghi được bản trộn tuyến tính. Phải khôi phục nguồn gốc khi không biết trước nguồn phát — Tách nguồn mù (Blind Source Separation). Thuật toán ICA giả định các nguồn độc lập thống kê, tính ma trận giải trộn để tối đa hoá tính độc lập, từ đó khôi phục chính xác tín hiệu gốc.</aside>
+    <h2>Bài toán Bữa tiệc Cocktail &amp; Thuật toán ICA <span class="act-badge">ACT 1</span></h2>
+    <p style="font-size:.92em;">Nhiều <b>nguồn phát âm thanh độc lập</b> hoạt động cùng lúc; các micro chỉ ghi được một <b>bản trộn tuyến tính (mixed signal)</b>. Nhiệm vụ: khôi phục các nguồn gốc khi <b>không có thông tin trước</b> về nguồn phát — bài toán <b>Tách nguồn mù (Blind Source Separation)</b>.</p>
+    <svg class="diagram" viewBox="0 0 760 250" style="width:min(760px,90%)" role="img" aria-label="Ba nguồn độc lập bị trộn rồi được ICA tách lại">
+      <text x="90" y="30" font-size="14" fill="#2563eb" font-weight="700" text-anchor="middle">3 nguồn độc lập</text>
+      <g font-size="15" fill="#1e293b">
+        <rect x="30" y="50" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="75" text-anchor="middle">giọng A</text>
+        <rect x="30" y="110" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="135" text-anchor="middle">giọng B</text>
+        <rect x="30" y="170" width="120" height="40" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="195" text-anchor="middle">giọng C</text>
+      </g>
+      <line x1="150" y1="70" x2="300" y2="120" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
+      <line x1="150" y1="130" x2="300" y2="130" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
+      <line x1="150" y1="190" x2="300" y2="140" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
+      <rect x="300" y="95" width="130" height="70" rx="10" fill="#fef2f2" stroke="#dc2626"/>
+      <text x="365" y="122" font-size="14" fill="#dc2626" text-anchor="middle" font-weight="700">TRỘN</text>
+      <text x="365" y="143" font-size="11" fill="#64748b" text-anchor="middle">mix1,2,3 (micro)</text>
+      <line x1="430" y1="130" x2="500" y2="130" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"/>
+      <rect x="500" y="95" width="90" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a"/>
+      <text x="545" y="126" font-size="15" fill="#16a34a" text-anchor="middle" font-weight="800">ICA</text>
+      <text x="545" y="146" font-size="10" fill="#64748b" text-anchor="middle">gỡ trộn</text>
+      <g font-size="13" fill="#16a34a" font-weight="700">
+        <line x1="590" y1="115" x2="650" y2="75" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
+        <line x1="590" y1="130" x2="650" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
+        <line x1="590" y1="145" x2="650" y2="185" stroke="#16a34a" stroke-width="2" marker-end="url(#arg2)"/>
+        <text x="655" y="80">→ A</text><text x="655" y="135">→ B</text><text x="655" y="190">→ C</text>
+      </g>
+      <defs>
+        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
+        <marker id="arg2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/></marker>
+      </defs>
+    </svg>
+    <div class="box key" style="font-size:.82em;"><span class="lbl">THUẬT TOÁN ICA (Independent Component Analysis)</span>Dựa trên giả định các nguồn gốc là các biến ngẫu nhiên <b>độc lập thống kê (statistically independent)</b>, ICA tính <b>ma trận giải trộn</b> để <b>tối đa hoá tính độc lập</b> → khôi phục chính xác tín hiệu gốc.</div>
+    <aside class="notes">Huy: "Bài toán kinh điển trong xử lý tín hiệu — Cocktail Party: nhiều nguồn âm thanh độc lập, micro chỉ ghi được bản trộn tuyến tính. Phải khôi phục nguồn gốc khi không biết trước nguồn phát — Tách nguồn mù (Blind Source Separation). Thuật toán ICA giả định các nguồn độc lập thống kê, tính ma trận giải trộn để tối đa hoá tính độc lập, từ đó khôi phục chính xác tín hiệu gốc."</aside>
   </section>
 
   <!-- S3 Cầu nối -->
   <section data-background-gradient="linear-gradient(135deg,#f0fdfa 0%,#eff6ff 100%)">
-    <h2>Trong văn bản: Văn bản là một bản trộn ngữ nghĩa</h2>
-    <svg class="diagram" viewBox="0 0 760 250" style="width:min(760px,90%)" role="img" aria-label="Văn bản là bản trộn ngữ nghĩa, ICA gỡ trộn thành các chủ đề">
-      <rect x="50" y="90" width="160" height="70" rx="10" fill="#fef2f2" stroke="#dc2626"/>
-      <text x="130" y="120" font-size="15" fill="#dc2626" text-anchor="middle" font-weight="700">VĂN BẢN</text>
-      <text x="130" y="141" font-size="11" fill="#64748b" text-anchor="middle">bản trộn ngữ nghĩa</text>
-      <line x1="210" y1="125" x2="320" y2="125" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar4)"/>
-      <rect x="320" y="90" width="110" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a"/>
-      <text x="375" y="121" font-size="15" fill="#16a34a" text-anchor="middle" font-weight="800">ICA</text>
-      <text x="375" y="141" font-size="10" fill="#64748b" text-anchor="middle">gỡ trộn</text>
-      <text x="565" y="35" font-size="14" fill="#16a34a" font-weight="700" text-anchor="middle">các chủ đề độc lập</text>
-      <g font-size="14" fill="#16a34a" font-weight="700">
-        <line x1="430" y1="115" x2="500" y2="70" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
-        <line x1="430" y1="125" x2="500" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
-        <line x1="430" y1="135" x2="500" y2="190" stroke="#16a34a" stroke-width="2" marker-end="url(#arg4)"/>
-        <rect x="505" y="50" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="75" text-anchor="middle">chủ đề A</text>
-        <rect x="505" y="110" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="135" text-anchor="middle">chủ đề B</text>
-        <rect x="505" y="170" width="150" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a"/><text x="580" y="195" text-anchor="middle">chủ đề C</text>
-      </g>
-      <defs>
-        <marker id="ar4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
-        <marker id="arg4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/></marker>
-      </defs>
-    </svg>
-    <aside class="notes">Đóng góp đầu tiên của S³ là chuyển logic tách tín hiệu âm thanh sang không gian ngữ nghĩa văn bản. Một tài liệu hiếm khi chỉ đại diện cho một chủ đề — nó là một bản trộn của nhiều chủ đề ẩn. Đóng góp của S³: áp dụng logic tách tín hiệu âm thanh vào không gian embedding của văn bản. Thay vì gom cụm topic (clustering) như các mô hình hiện tại, S³ xem bài toán theo hướng mỗi chủ đề là một nguồn phát độc lập; áp FastICA lên document embeddings để phân rã ma trận, tìm ra các trục ngữ nghĩa (Semantic Axes), mỗi trục đại diện cho một chủ đề.</aside>
+    <h2>Chuyển dịch: Văn bản là một bản trộn ngữ nghĩa <span class="act-badge">ACT 1</span></h2>
+    <div class="box idea">
+      Một tài liệu hiếm khi chỉ đại diện cho <b>một</b> chủ đề — nó là một <b>bản trộn ngữ nghĩa</b> của nhiều chủ đề ẩn. Đóng góp đầu tiên của S³: <b>chuyển logic tách tín hiệu âm thanh sang không gian ngữ nghĩa văn bản</b>.
+    </div>
+    <div class="box key">
+      Thay vì gom cụm hình học (clustering) như các mô hình hiện tại, S³ định nghĩa lại bài toán: <b>mỗi chủ đề là một nguồn phát độc lập</b>. Áp <b>FastICA</b> lên ma trận nhúng tài liệu (document embeddings) → phân rã ma trận, tìm các <b>vector cơ sở độc lập</b> = các <b>Trục ngữ nghĩa (Semantic Axes)</b>, mỗi trục đại diện một chủ đề.
+    </div>
+    <aside class="notes">Huy: "Đóng góp đầu tiên của S³ là chuyển logic tách tín hiệu âm thanh sang không gian ngữ nghĩa văn bản. Một tài liệu là bản trộn của nhiều chủ đề ẩn. Thay vì clustering, S³ coi mỗi chủ đề là một nguồn phát độc lập; áp FastICA lên document embeddings để phân rã, tìm các vector cơ sở độc lập — gọi là các Trục ngữ nghĩa (Semantic Axes), mỗi trục là một chủ đề."</aside>
   </section>
 
   <!-- S4 ICA vs PCA khái quát -->
   <section>
-    <h2>Bản chất toán học của S³: Sử dụng PCA và ICA</h2>
+    <h2>Bản chất toán học: ICA vs PCA <span class="act-badge">ACT 1</span></h2>
     <div class="two-col-tight">
-      <div class="box tech"><span class="lbl">PCA (Phân tích Thành phần Chính - Principal Component Analysis) </span> Thuật toán được sử dụng để <b>giới hạn số lượng topic</b> bằng cách trích xuất ra các thành phần chính mang nhiều thông tin nhất.</div>
-      <div class="box key"><span class="lbl">ICA (Phân tích Thành phần Độc lập - Independent Component Analysis)</span> Thuật toán dùng để <b>phân rã và tách các tín hiệu</b> đã bị trộn lẫn thành các thành phần tiềm ẩn độc lập.</div>
+      <div class="box tech"><span class="lbl">PCA</span>Tìm các hướng có <b>phương sai lớn nhất</b>, ràng buộc các trục <b>không tương quan (uncorrelated)</b>. Nhưng không tương quan <b>chưa chắc độc lập</b> → PCA thiên về <b>nén dữ liệu</b>, không tách được nguồn.</div>
+      <div class="box key"><span class="lbl">ICA</span>Đòi hỏi các thành phần đạt mức <b>độc lập thống kê cao nhất</b>. Chính điều kiện khắt khe này cho phép <b>tách nguồn</b> thật sự.</div>
     </div>
-    <img src="/NLP/main/PCA_vs_ICA.png" alt="So sánh PCA và ICA" style="display:block;margin:.6em auto 0;max-width:70%;max-height:42vh;border-radius:8px;">
-    <aside class="notes">PCA tìm hướng phương sai lớn nhất, trục không tương quan — nhưng không tương quan chưa chắc độc lập, nên PCA chỉ nén, không tách nguồn. ICA đòi độc lập thống kê cao nhất → tách nguồn. Nhờ đó S³ tự trích xuất trục ngữ nghĩa mà không cần định nghĩa thủ công cặp từ đối lập; chiếu từ vựng lên trục ICA cho các chủ đề tách biệt, diễn giải được. Vậy Topic Modeling hiện hành gặp điểm nghẽn nào dẫn đến động lực phát triển S³? Xin mời [người 2] trình bày phần tiếp theo.</aside>
+    <div class="box idea" style="font-size:.85em;"><span class="lbl">VÌ SAO QUAN TRỌNG VỚI S³</span>ICA giúp S³ <b>tự động trích xuất các trục ngữ nghĩa</b> từ dữ liệu — không cần con người định nghĩa thủ công bằng các cặp từ đối lập như nghiên cứu trước. Khi <b>chiếu từ vựng lên các trục ICA</b>, các chủ đề trở nên <b>tách biệt, không chồng lấn</b> và <b>diễn giải được</b> trực quan.</div>
+    <p class="center"><small>Vậy các hệ Topic Modeling hiện hành đang gặp điểm nghẽn nào? → phần tiếp theo (Act 2).</small></p>
+    <aside class="notes">Huy: "PCA tìm hướng phương sai lớn nhất, trục không tương quan — nhưng không tương quan chưa chắc độc lập, nên PCA chỉ nén, không tách nguồn. ICA đòi độc lập thống kê cao nhất → tách nguồn. Nhờ đó S³ tự trích xuất trục ngữ nghĩa mà không cần định nghĩa thủ công cặp từ đối lập; chiếu từ vựng lên trục ICA cho các chủ đề tách biệt, diễn giải được. Vậy Topic Modeling hiện hành gặp điểm nghẽn nào dẫn đến động lực phát triển S³? Xin mời [người 2] trình bày phần tiếp theo."</aside>
   </section>
 
   <!-- ========================================================= -->
@@ -160,20 +151,20 @@
 
   <!-- ACT 2 · Timeline (đứng riêng — chuyển ngang) -->
   <section>
-    <h2>Quá trình phát triển Topic Modeling</h2>
+    <h2>Quá trình phát triển Topic Modeling <span class="act-badge">ACT 2 · ĐỘNG LỰC</span></h2>
     <div class="cols" style="font-size:.8em;">
       <div class="step"><b>Giai đoạn 1</b><br>Bag-of-Words<br><small>LSA (1988) · LDA (2003)</small></div>
       <div class="step"><b>Giai đoạn 2</b><br>Contextual Embedding<br><small>BERT · SBERT (~2019)</small></div>
       <div class="step"><b>Giai đoạn 3</b><br>Neural / Clustering<br><small>CTM · BERTopic · Top2Vec</small></div>
       <div class="step rank1" style="border:2px solid var(--accent)"><b>Giai đoạn 4</b><br>S³ (2025)<br><small>ICA trên Embedding</small></div>
     </div>
-    <aside class="notes">Topic modeling đã đi qua 4 giai đoạn. (chỉ lần lượt) Đầu tiên — đếm từ, Bag-of-Words. Rồi chuyển sang contextual embedding. Rồi dùng embedding tìm topic, chia 2 nhánh Neural và Clustering. Và cuối cùng — S³, bài báo hôm nay. Mỗi giai đoạn sau ra đời vì giai đoạn trước có vấn đề. Mình đi nhanh qua.</aside>
+    <aside class="notes">Tổng quan 4 giai đoạn phát triển của topic modeling.</aside>
   </section>
 
   <!-- ACT 2 · Giai đoạn 1 — BoW + LSA/LDA -->
   <section>
     <section>
-      <h2>Giai đoạn 1: Bag-of-Words</h2>
+      <h2>Giai đoạn 1: Bag-of-Words <span class="act-badge">ACT 2</span></h2>
       <p style="font-size:.9em;">Biểu diễn văn bản bằng cách <b>đếm từ</b> — bỏ qua ngữ pháp và thứ tự.</p>
       <table style="font-size:.62em;">
         <thead><tr><th></th><th>mèo</th><th>đuổi</th><th>chuột</th><th>chó</th><th>sợ</th></tr></thead>
@@ -185,23 +176,22 @@
       </table>
       <div class="box warnx" style="font-size:.8em;"><span class="lbl">ĐIỂM YẾU</span>Mất ngữ cảnh hoàn toàn · không phân biệt nghĩa (đa nghĩa) · ma trận rất thưa (sparse) · bắt buộc tiền xử lý nặng.</div>
       <p class="center"><small>↓ cuộn xuống để xem so sánh giữa LSA và LDA</small></p>
-      <aside class="notes">Cách đầu tiên để máy tính "đọc" văn bản: đếm từ, bỏ thứ tự. (chỉ bảng) Như bảng này — 3 câu thành 3 dãy số. (chỉ 4 dấu ✕) Nhưng 4 vấn đề: "mèo đuổi chuột" với "chuột đuổi mèo" cho cùng vector — vì bỏ thứ tự. Ví dụ bạc tóc và kho bạc. Ma trận hơn 21 nghìn cột mà hầu hết bằng 0 — tốn bộ nhớ, chạy chậm. Và bắt buộc phải tiền xử lý — mỗi nghiên cứu làm khác nhau nên khó so sánh. (chỉ box dưới) 4 vấn đề này nằm ở cách biểu diễn — thuật toán hay cỡ nào cũng không sửa được. LSA và LDA đều xây trên nền này.</aside>
+      <aside class="notes">BoW là nền tảng; LSA và LDA đều xây trên nó, chỉ khác cách "tìm chủ đề".</aside>
     </section>
     <section>
-      <h2>LSA (1988) &amp; LDA (2003)</h2>
+      <h2>LSA (1988) &amp; LDA (2003) <span class="act-badge">ACT 2</span></h2>
       <p style="font-size:.85em;">Hai nhánh riêng biệt — cùng xây trên nền Bag-of-Words.</p>
       <div class="two-col-tight" style="font-size:.8em;">
         <div class="box tech"><span class="lbl">LSA — Đại số tuyến tính</span><b>Ý tưởng:</b> Nén ma trận đếm từ xuống K chiều, mỗi chiều là 1 topic.<br><b>Cách làm:</b> Dùng thuật toán SVD phân tách \( A = U\,\Sigma\,V^{\top} \).<br><b>Điểm yếu:</b> SVD chỉ cho trục trực giao (uncorrelated) — 1 trục có thể lẫn nhiều chủ đề; input vẫn BoW.</div>
         <div class="box key"><span class="lbl">LDA — Thống kê xác suất</span><b>Ý tưởng:</b> Mô hình sinh — mô tả cách tài liệu "được sinh ra" rồi suy ngược lại.<br><b>Cách làm:</b> Chọn phân phối chủ đề (Dirichlet) → sinh từng từ theo chủ đề → suy luận ngược (Bayes).<br><b>Điểm yếu:</b> giả định Dirichlet có thể sai, nhạy hyperparameter (α,β), Bayes tốn thời gian; input vẫn là BoW.</div>
       </div>
       <p class="center"><small>S³ sẽ kế thừa tinh thần LSA (phân tách ma trận tuyến tính), chỉ đổi input + thuật toán (Slide 12).</small></p>
-      <aside class="notes">(chỉ box trái) LSA — đại số tuyến tính. Ý tưởng: nén ma trận đếm từ xuống K chiều, mỗi chiều là 1 topic. (chỉ dòng công thức) Cách làm: tách ma trận A thành 3 phần — U là tài liệu thuộc topic nào, Sigma là mức quan trọng, V là từ thuộc topic nào. Điểm yếu: 1 trục có thể lẫn nhiều chủ đề, và input vẫn BoW. (chỉ box phải) LDA — thống kê xác suất. Ý tưởng khác hẳn: mô tả cách tài liệu "được sinh ra" từ hỗn hợp chủ đề, rồi suy ngược lại. Điểm yếu: giả định Dirichlet có thể sai, nhạy tham số, và input vẫn BoW. (chỉ box vàng) S³ sẽ kế thừa tinh thần LSA — chỉ đổi input và thuật toán. (chỉ box phải) Cả hai bị giới hạn bởi BoW — cần thay đổi cách biểu diễn.</aside>
     </section>
   </section>
 
   <!-- ACT 2 · Giai đoạn 2 — Contextual Embedding (đứng riêng) -->
   <section>
-    <h2>Giai đoạn 2: Contextual Embedding</h2>
+    <h2>Giai đoạn 2: Contextual Embedding <span class="act-badge">ACT 2</span></h2>
     <p style="font-size:.9em;">Từ <b>"đếm từ"</b> sang <b>"hiểu nghĩa"</b> — BERT (2018), SBERT (2019).</p>
     <table style="font-size:.66em;">
       <thead><tr><th></th><th>Bag-of-Words</th><th>Sentence Embedding</th></tr></thead>
@@ -214,39 +204,54 @@
       </tbody>
     </table>
     <div class="box key" style="font-size:.8em;"><span class="lbl">TRANSFER LEARNING</span>Model embedding đã pretrain trên hàng tỷ câu → mang về dùng trên corpus riêng là dùng được ngay, không cần dữ liệu lớn để bắt đầu.</div>
-    <aside class="notes">Giải pháp: thay đếm từ bằng embedding — BERT 2018, SBERT 2019. (chỉ bảng) Bảng so sánh cho thấy embedding giải quyết gần hết vấn đề của BoW: hiểu ngữ cảnh, hiểu ngữ pháp, không bắt buộc tiền xử lý, vector nhỏ gọn thay vì thưa. (chỉ box vàng) Thêm 1 lợi thế: model đã huấn luyện sẵn trên hàng tỷ câu — mang về dùng trên corpus riêng là dùng được ngay, không cần dữ liệu lớn. (chỉ box xanh) Nhưng embedding chỉ cho mình vector số — chưa nói có bao nhiêu chủ đề. Cần thêm bước tìm topic. Và ở đây giới nghiên cứu chia 2 hướng.</aside>
+    <aside class="notes">Embedding chỉ là biểu diễn — chưa tìm topic. Dùng nó tìm topic bằng cách nào → 2 nhánh (Giai đoạn 3).</aside>
   </section>
 
   <!-- ACT 2 · Giai đoạn 3 — Neural vs Clustering (đứng riêng · refine theo §2.2) -->
   <section>
-    <h2>Giai đoạn 3: Neural vs Clustering</h2>
-    <div class="two-col-tight" style="font-size:.8em;">
-      <div class="box tech"><span class="lbl">NHÁNH NEURAL — 3 model chính</span>
-        <b>CTM:</b> dùng mạng nơ-ron nén rồi tái tạo tài liệu, nhưng tái tạo bằng <b>đếm từ</b> — nên topic ra <span class="lose">toàn rác</span>.<br>
-        <b>ECRTM:</b> <span class="lose">chậm nhất</span> và không dùng contextual embedding.<br>
-        <b>FASTopic:</b> nhẹ hơn nhưng <span class="lose">hay gộp nhầm chủ đề</span>.</div>
-      <div class="box key"><span class="lbl">NHÁNH CLUSTERING — tìm cụm tài liệu gần nhau</span>
-        <b>Top2Vec:</b> gán từ khóa bằng <b>tâm cụm</b>.<br>
-        <b>BERTopic:</b> dùng <b>c-TF-IDF</b> — lại quay lại đếm từ.<br>
-        <span class="lose">Thất bại:</span> có lúc chỉ ra 1 cụm toàn stopword, hoặc 2 cụm cho cả corpus.</div>
+    <h2>Giai đoạn 3: Neural vs Clustering <span class="act-badge">ACT 2</span></h2>
+    <div class="two-col-tight" style="font-size:.72em;">
+      <div class="box tech"><span class="lbl">NHÁNH NEURAL — mạng nơ-ron ước lượng tham số</span>
+        <b>CTM (ZeroShotTM / CombinedTM):</b> mô hình sinh BoW dùng variational autoencoder; embedding làm input encoder (CombinedTM nối thêm vector BoW). <span class="lose">Điểm yếu:</span> cần tiền xử lý nặng; hiệu quả &amp; chất lượng giảm mạnh khi từ vựng lớn.<br>
+        <b>ECRTM:</b> điều chuẩn phân cụm nhúng để các topic đủ khác biệt (tránh mô tả trùng nhau). <span class="lose">Điểm yếu:</span> không dùng biểu diễn ngữ cảnh; chậm hơn hẳn.<br>
+        <b>FASTopic:</b> quan hệ ngữ nghĩa kép — tài liệu–chủ đề–từ như các "optimal transport plans". <span class="win">Hiệu quả &amp; chất lượng cao hơn các mô hình neural trước.</span></div>
+      <div class="box key"><span class="lbl">NHÁNH CLUSTERING — phân cụm embedding, trọng số từ tính post hoc</span>
+        <b>Top2Vec:</b> cosine giữa vector từ và tâm cụm. <span class="lose">Điểm yếu:</span> giả định cụm hình cầu &amp; lồi → mô tả topic sai lệch nếu cụm méo.<br>
+        <b>BERTopic:</b> trọng số từ bằng c-TF-IDF (class-based TF-IDF).<br>
+        Cả hai đều: UMAP (giảm chiều) + HDBSCAN (phân cụm), kèm bước <b>giảm số topic</b> — vì HDBSCAN tự học số cụm nên số cụm có thể bùng nổ.</div>
     </div>
-    <aside class="notes">Ở giai đoạn 2 chỉ cho ra được vector số chứ không tìm ra được có bao nhiêu chủ đề, nên ở giai đoạn 3 sẽ làm việc đó; giai đoạn này chia làm 2 hướng là Neural và Clustering. Neural thì dùng mạng nơ-ron để học ra các topic, còn Clustering dùng thuật toán phân cụm. (chỉ cột trái) Nhánh Neural — 3 model chính. CTM dùng mạng nơ-ron nén rồi tái tạo tài liệu, nhưng tái tạo bằng đếm từ — nên topic ra toàn rác. ECRTM chậm nhất và không dùng contextual embedding. FASTopic nhẹ hơn nhưng hay gộp nhầm chủ đề. (chỉ cột phải) Nhánh Clustering — tìm cụm tài liệu gần nhau. Top2Vec gán từ khóa bằng tâm cụm. BERTopic dùng c-TF-IDF — lại quay lại đếm từ. Thất bại: có lúc chỉ ra 1 cụm toàn stopword, hoặc 2 cụm cho cả corpus. (chỉ bar đỏ) Chung quy: chậm, nhạy tham số, nhiều model vẫn quay lại đếm từ.</aside>
+    <div class="box warnx" style="font-size:.76em;"><span class="lbl">THÁCH THỨC CHUNG (§2.2)</span>Nhạy hyperparameter · topic khó diễn giải · phụ thuộc tiền xử lý chưa chuẩn hoá · chưa rõ có thật sự tận dụng ngữ cảnh (thường chỉ đánh giá trên corpus đã tiền xử lý).</div>
+    <aside class="notes">Refine theo §2.2: Neural (CTM/ECRTM/FASTopic) + Clustering (Top2Vec/BERTopic), cách làm + điểm yếu từng loại. FASTopic được §2.2 xem là mạnh nhất nhóm neural.</aside>
+  </section>
+
+  <!-- ACT 2 · Chùm 3 — Clustering chi tiết (pptx S6) -->
+  <section>
+    <h2>Clustering: Pipeline &amp; Điểm yếu hệ thống <span class="act-badge">ACT 2</span></h2>
+    <div class="cols" style="font-size:.8em;">
+      <div class="step"><b>1. UMAP</b><br>768 → ~5 chiều<br><small>(giữ cấu trúc gần/xa)</small></div>
+      <div class="step"><b>2. HDBSCAN</b><br>tự tìm vùng mật độ cao = cụm</div>
+      <div class="step"><b>3. Từ khóa</b><br>Top2Vec: cosine · BERTopic: c-TF-IDF</div>
+    </div>
+    <div class="box warnx" style="font-size:.8em;"><span class="lbl">1. Quá nhiều tham số, không biết chọn sao</span>UMAP (3) + HDBSCAN (2) = 5–6 tham số, không có hướng dẫn.</div>
+    <div class="box warnx" style="font-size:.8em;"><span class="lbl">2. Số topic nổ lên không kiểm soát</span>HDBSCAN tự học → có thể hàng trăm cụm → cần thêm bước gộp.</div>
+    <div class="box warnx" style="font-size:.8em;"><span class="lbl">3. Phân cụm sai → không cứu được</span>Gán từ khóa chạy SAU cluster → lỗi chảy xuôi, không có cơ chế sửa.</div>
+    <aside class="notes">Pipeline 3 bước + 3 điểm yếu hệ thống của Clustering.</aside>
   </section>
 
   <!-- ACT 2 · Chùm 4 — 3 thách thức chung (pptx S7) -->
   <section>
-    <h2>3 Thách thức chung</h2>
+    <h2>3 Thách thức chung <span class="act-badge">ACT 2</span></h2>
     <p style="font-size:.85em;">Cả Neural lẫn Clustering đều gặp — khoảng trống mà S³ nhắm vào:</p>
     <div class="box warnx" style="font-size:.82em;"><span class="lbl">1. Nhạy hyperparameter, khó tái lập</span>Neural: lr, epochs, kiến trúc mạng · Clustering: UMAP + HDBSCAN + topic reduction → chưa có hướng dẫn chọn tối ưu.</div>
     <div class="box warnx" style="font-size:.82em;"><span class="lbl">2. Vẫn phụ thuộc tiền xử lý</span>CTM: decoder BoW · BERTopic: c-TF-IDF → "cửa ngõ" cho vấn đề tiền xử lý vẫn tồn tại.</div>
     <div class="box warnx" style="font-size:.82em;"><span class="lbl">3. Chưa rõ tận dụng context thật</span>Hầu hết đánh giá trên corpus ĐÃ tiền xử lý → tốt vì "hiểu context" hay vì "dữ liệu đã sạch"? Chưa ai so corpus thô vs đã xử lý.</div>
-    <aside class="notes">(nói chậm lại từ đây) 3 thách thức này chính là lý do S³ ra đời — hiểu rõ 3 cái này là hiểu vì sao cần S³. (chỉ card đỏ) Thứ nhất: nhạy tham số. Neural có learning rate, epochs, kiến trúc mạng. Clustering có tham số UMAP, HDBSCAN, rồi bước gộp cụm nữa. Mỗi thay đổi nhỏ cho kết quả khác. Mà chưa có ai chỉ ra nên chọn thế nào cho tốt. (chỉ card cam) Thứ hai: vẫn phụ thuộc tiền xử lý. Đây là điểm quan trọng. Nhiều model vẫn dùng BoW hoặc TF-IDF ở đâu đó — CTM thì decoder tái tạo Bag-of-Words, BERTopic dùng c-TF-IDF. Tức là embedding hiểu ngữ cảnh ở đầu vào, nhưng vì giữa pipeline vẫn có bước đếm từ — vấn đề chỉ bị đẩy đi chứ không mất. (chỉ card tím) Thứ ba: chưa biết các model có thực sự tận dụng context không. Vì hầu hết benchmark chạy trên dữ liệu đã tiền xử lý sẵn — đã loại stopword, đã stemming xong. Nên không biết model tốt vì "hiểu context" hay vì "dữ liệu đã sạch." Chưa ai so sánh kết quả trên corpus thô vs đã xử lý. (dừng) Ba cái này chính là "đề bài" mà S³ đặt ra. Giờ xem S³ từ đâu ra và giải thế nào.</aside>
+    <aside class="notes">3 thách thức chung → cầu nối sang S³.</aside>
   </section>
 
   <!-- ACT 2 · Chùm 5 — S³ tổng kết bối cảnh (pptx S8–S9) -->
   <section>
     <section>
-      <h2>S³ — Hậu duệ contextual của LSA</h2>
+      <h2>S³ — Hậu duệ contextual của LSA <span class="act-badge">ACT 2</span></h2>
       <p style="font-size:.82em;">Nền tảng: trục ngữ nghĩa đã được khám phá (Musil &amp; Mareček 2024 · Yamagiwa 2023).</p>
       <table style="font-size:.66em;">
         <thead><tr><th></th><th>Nghiên cứu trước</th><th>S³</th></tr></thead>
@@ -260,10 +265,10 @@
         <div class="box key"><span class="lbl">S³</span>embedding + ICA → trục độc lập (independent)</div>
       </div>
       <div class="box idea" style="font-size:.76em;"><span class="lbl">VÌ SAO ICA THAY SVD?</span>SVD/PCA: trực giao (yếu) → 1 trục lẫn nhiều chủ đề. ICA: độc lập thống kê (mạnh hơn) — biết trục A không suy ra được gì về trục B. Cocktail party: 3 micro thu hỗn hợp → ICA tách từng giọng; tài liệu = hỗn hợp topic → ICA tách topic. <i>Paper: "the contextual successor of Latent Semantic Analysis".</i></div>
-      <aside class="notes">Trước S³, đã có người dùng ICA trên embedding — nhưng chỉ chứng minh ICA tìm ra trục có ý nghĩa, chưa biến thành topic model. S³ là người làm đầy đủ việc đó. Như đã nói ở slide 3, S³ đi theo hướng LSA. LSA dùng SVD — tức tách ma trận đếm từ. S³ dùng ICA — tách ma trận embedding. Khác nhau ở chỗ: SVD cho trục trực giao — điều kiện yếu — 1 trục có thể lẫn nhiều chủ đề. ICA cho trục độc lập — biết trục A nhưng không suy ra được gì về trục B. Hình dung: 3 người nói cùng lúc, 3 micro thu hỗn hợp, ICA tách ra từng giọng. Tài liệu cũng là hỗn hợp chủ đề — ICA tách ra từng chủ đề. Đóng góp của S³: biến kỹ thuật tìm trục ngữ nghĩa thành topic model đầy đủ — trục đặc thù corpus, sinh từ khóa, đánh giá chất lượng.</aside>
+      <aside class="notes">S³ = LSA đổi BoW→embedding, SVD→ICA. Đóng góp: biến kỹ thuật trục ngữ nghĩa thành topic model đầy đủ.</aside>
     </section>
     <section>
-      <h2>S³ giải quyết 3 thách thức</h2>
+      <h2>S³ giải quyết 3 thách thức <span class="act-badge">ACT 2</span></h2>
       <table style="font-size:.62em;">
         <thead><tr><th>Thách thức</th><th>Neural / Clustering</th><th>S³</th></tr></thead>
         <tbody>
@@ -274,7 +279,7 @@
       </table>
       <div class="box key" style="font-size:.82em;"><span class="lbl">ĐIỂM MẤU CHỐT</span>S³ loại bỏ <b>hoàn toàn</b> mọi bước đếm từ/TF-IDF khỏi pipeline — cả tìm topic (ICA) lẫn gán từ khóa (chiếu embedding lên trục). Đây là khác biệt căn bản nhất so với mọi model trước.</div>
       <p class="center"><small>→ Chuyển sang phần thuật toán chi tiết (Act 3).</small></p>
-      <aside class="notes">(chỉ bảng) Bảng này gói lại toàn bộ. (chỉ hàng 1) Nhạy tham số — model cũ nhiều tham số, không biết chọn. (chỉ cột xanh) S³ dùng FastICA default của scikit-learn — gần như không cần chỉnh gì. (chỉ hàng 2) Cần tiền xử lý — model cũ vẫn đếm từ ở đâu đó. (chỉ cột xanh) S³ không có bước đếm từ nào. Cả tìm topic lẫn gán từ khóa đều làm trên embedding. (chỉ hàng 3) Chưa rõ dùng context — model cũ chỉ test trên dữ liệu đã xử lý sẵn. (chỉ cột xanh) S³ test cả 2 — và là model hưởng lợi nhiều nhất khi bỏ tiền xử lý. Kết quả trên corpus thô còn cao hơn các model khác chạy trên dữ liệu đã xử lý. (chỉ box xanh dưới) Điểm mấu chốt: S³ bỏ hoàn toàn đếm từ và TF-IDF khỏi pipeline. Cả tìm topic lẫn gán từ khóa — đều thuần embedding. Đây là khác biệt lớn nhất. Đó là toàn bộ phần bối cảnh. Giờ mình đi vào S³ hoạt động cụ thể thế nào.</aside>
+      <aside class="notes">Bảng S³ vs Neural/Clustering trên 3 thách thức. S³ loại bỏ hoàn toàn đếm từ.</aside>
     </section>
   </section>
 
@@ -284,7 +289,7 @@
 
   <!-- P3-A Turftopic: dùng thử -->
   <section>
-    <h2>Giới thiệu mô hình S³: Semantic Signal Separation — turftopic</h2>
+    <h2>Giới thiệu mô hình S³: Semantic Signal Separation — turftopic <span class="act-badge">ACT 3 · THUẬT TOÁN</span></h2>
     <p>Tác giả đóng gói S³ thành thư viện Python <b>Turftopic</b> (interface kiểu scikit-learn). Cách sử dụng được thể hiện bên dưới.</p>
     <div class="box tech"><span class="lbl">CÀI ĐẶT (CLI)</span>
       <pre style="font-size:.55em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-bash">pip install turftopic</code></pre>
@@ -306,7 +311,7 @@ model.print_topics()</code></pre>
 
   <!-- P3-B Pipeline tổng thể (copy từ bản học) -->
   <section>
-    <h2>Pipeline S³ tổng thể</h2>
+    <h2>Pipeline S³ tổng thể <span class="act-badge">ACT 3 · THUẬT TOÁN</span></h2>
     <svg class="diagram" viewBox="0 0 800 320" style="width:min(1000px,98%)" role="img" aria-label="Sơ đồ luồng toàn bộ thuật toán S³">
       <defs>
         <marker id="fa" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#64748b"/></marker>
@@ -353,7 +358,7 @@ model.print_topics()</code></pre>
   <!-- S10 6 bước (stack) -->
   <section>
     <section>
-      <h2>Thuật toán S³ — 6 bước</h2>
+      <h2>Thuật toán S³ — 6 bước <span class="act-badge">ACT 3 · THUẬT TOÁN</span></h2>
       <div class="step"><b>1.</b> Encode tài liệu → ma trận <b>X</b> (embedding các tài liệu)</div>
       <div class="step"><b>2.</b> Áp dụng <b>FastICA</b> phân rã: <b>X = A · S</b> &nbsp;(A = trục topic, S = tỷ lệ topic)</div>
       <div class="step"><b>3.</b> Encode <b>từ điển</b> bằng cùng encoder → ma trận <b>V</b></div>
@@ -364,15 +369,27 @@ model.print_topics()</code></pre>
       <aside class="notes">Điểm bán hàng: không train mạng, không vòng lặp tối ưu → nhanh.</aside>
     </section>
     <section>
-      <h2>Ý tưởng phương pháp — quan điểm tác giả</h2>
-      <img src="/NLP/main/So_do_S3.png" alt="Sơ đồ tổng quan phương pháp S³" style="display:block;margin:.5em auto 0;max-width:78%;max-height:52vh;border-radius:8px;">
+      <h2>Ý tưởng phương pháp — quan điểm tác giả <span class="act-badge">ACT 3 · THUẬT TOÁN</span></h2>
+      <div class="box idea">
+        <b>Semantic Signal Separation (S³)</b> — một phương pháp mới cho topic modeling trong <b>không gian embedding liên tục</b>, nhằm khắc phục các thách thức đã nêu của những phương pháp contextual topic modeling hiện có.
+      </div>
+      <div class="box key" style="font-size:.95em;">
+        Thuật toán quan niệm <b>topic là các trục ngữ nghĩa (semantic axes)</b> giải thích phần <b>biến thiên (variation)</b> đặc thù của một kho ngữ liệu, và phân rã các biểu diễn ngữ nghĩa thành:
+        <ul style="margin:.25em 0;">
+          <li>các thành phần ẩn <b>A</b> — giả định là các <b>topic</b>;</li>
+          <li>độ mạnh của mỗi thành phần trong từng tài liệu <b>S</b> — chính là <b>độ quan trọng topic trong tài liệu</b>.</li>
+        </ul>
+        Từ đó áp dụng <b>Independent Component Analysis (ICA)</b> để tách bạch các topic.
+      </div>
       <p class="center"><small>↓ đi qua từng bước</small></p>
       <aside class="notes">Framing theo đúng §3 của bài — "tuyên ngôn" phương pháp trước khi vào chi tiết từng bước.</aside>
     </section>
     <section>
-      <h2>Bước 1: Biểu diễn tài liệu + Whitening</h2>
+      <h2>Bước 1: Biểu diễn tài liệu + Whitening <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Mã hoá tài liệu qua một mô hình <b>sentence transformer</b>. Gọi <b>X</b> là ma trận các biểu diễn (encodings) của tài liệu.</p>
-      <img src="/NLP/main/PCA.jpeg" alt="Tiền xử lý Whitening: giảm chiều embedding bằng PCA" style="display:block;margin:.4em auto;max-width:55%;max-height:40vh;border-radius:8px;">
+      <div class="box tech" style="font-size:.82em;"><span class="lbl">TIỀN XỬ LÝ: WHITENING</span>
+        Để chuẩn bị phân rã X bằng FastICA, cần áp dụng kỹ thuật <b>whitening</b> lên ma trận X — vì FastICA là mô hình <b>không nhiễu (noiseless)</b>. Do mặc định ICA tìm ra số thành phần (topic) <b>bằng đúng số chiều embedding</b>, nên phải <b>giảm chiều</b> embedding bằng cách lấy <b>N thành phần chính (principal components) đầu tiên</b>, với N = số topic mong muốn.
+      </div>
       <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python">from sklearn.decomposition import FastICA
 
 # FastICA: whitening + giảm chiều còn 20 topic, rồi tách nguồn độc lập
@@ -380,16 +397,12 @@ ica = FastICA(n_components=20, whiten="unit-variance")</code></pre>
       <aside class="notes">Whitening + giảm chiều về N gói gọn trong FastICA(n_components=N, whiten=...). Đây là chỗ "có PCA bên trong".</aside>
     </section>
     <section>
-      <h2>Bước 2: Phân rã X bằng FastICA</h2>
+      <h2>Bước 2: Phân rã X bằng FastICA <span class="act-badge">ACT 3</span></h2>
       <p class="center" style="font-size:1.15em;">\[ X = A \cdot S \]</p>
       <div class="box idea" style="font-size:.85em;">
         <b>A</b> = ma trận trộn (mixing matrix) · <b>S</b> = ma trận nguồn (source matrix) chứa <b>độ quan trọng giữa tài liệu và chủ đề</b> (document-topic importances). FastICA tìm trực tiếp ra A và S.
       </div>
-      <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python">from sentence_transformers import SentenceTransformer
-from sklearn.decomposition import FastICA
-
-# Encoder để nhúng văn bản
-enc = SentenceTransformer("all-MiniLM-L6-v2")
+      <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python">from sklearn.decomposition import FastICA
 
 # Embedding các tài liệu
 X = enc.encode(documents)
@@ -405,7 +418,7 @@ A = ica.mixing_</code></pre>
       <aside class="notes">fit_transform trả về S (doc-topic); mixing_ là A (topic). Chỉ một phép phân rã, không train mạng.</aside>
     </section>
     <section>
-      <h2>Bước 3: Mã hoá từ vựng → V</h2>
+      <h2>Bước 3: Mã hoá từ vựng → V <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Mã hoá từ vựng của kho ngữ liệu bằng <b>cùng một mô hình sentence transformer</b>. Gọi ma trận mã hoá từ vựng là <b>V</b>.</p>
       <div class="box tech" style="font-size:.8em;"><span class="lbl">TỪ VỰNG LẤY TỪ ĐÂU?</span>
         Về nguyên tắc từ vựng đến từ một cuốn từ điển (Anh, Việt...). Nhưng khi implement, bước này thường được <b>tích hợp với việc trích xuất từ vựng ngay từ dữ liệu đầu vào</b> — chỉ tổng hợp những từ thực sự xuất hiện trong kho, không cần một cuốn từ điển khổng lồ bên ngoài.
@@ -420,7 +433,7 @@ V = enc.encode(vocab)</code></pre>
       <aside class="notes">CountVectorizer gom từ vựng từ chính corpus. V dùng chung encoder với X để cùng không gian.</aside>
     </section>
     <section>
-      <h2>Bước 4: Ma trận tách C = A⁺</h2>
+      <h2>Bước 4: Ma trận tách C = A⁺ <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Ma trận tách (unmixing / khử trộn) <b>C</b> = <b>nghịch đảo giả (pseudo-inverse)</b> của ma trận trộn A:</p>
       <p class="center" style="font-size:1.15em;">\[ C = A^{+} \]</p>
       <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python"># Ma trận trộn A (D × N)
@@ -428,23 +441,14 @@ A = ica.mixing_
 
 # Ma trận tách C = A⁺ (unmixing matrix, N × D)
 C = np.linalg.pinv(A)</code></pre>
-      <div style="display:flex;align-items:center;justify-content:center;gap:1.2em;margin-top:.4em;flex-wrap:wrap;">
-        <img src="/NLP/main/MaTranTronA.png" alt="Ma trận trộn A" style="max-width:44%;max-height:40vh;border-radius:8px;">
-        <img src="/NLP/main/MaTranKhuTron.png" alt="Ma trận khử trộn C = A⁺" style="max-width:44%;max-height:40vh;border-radius:8px;">
+      <div class="box key" style="font-size:.78em;"><span class="lbl">C GIỮ "QUY LUẬT" CÁC TRỤC NGỮ NGHĨA — DÙNG 2 VIỆC</span>
+        <b>1.</b> "Chiếu" toàn bộ từ vựng lên C để tính hệ số quan trọng của từ → <b>gọi tên được các topic</b>.<br>
+        <b>2.</b> Văn bản mới đưa vào → chỉ cần <b>nhân với C</b> là tính ngay hệ số phân bổ topic, <b>không cần huấn luyện lại</b>.
       </div>
       <aside class="notes">Lưu ý code: A lấy bằng thuộc tính ica.mixing_ (không gọi như hàm). pinv = Moore–Penrose pseudo-inverse.</aside>
     </section>
-    <!-- Ví dụ ma trận C -->
     <section>
-      <h2>Ví dụ: Ma trận tách C (unmixing matrix)</h2>
-      <p style="font-size:.88em;">C có kích thước <b>N × D</b>: mỗi <b>hàng</b> = một trục topic (ví dụ 3 topic), mỗi <b>cột</b> = một chiều của không gian embedding (thường vài trăm → chỉ hiện 3 cột đầu, phần còn lại là <b>⋯</b>).</p>
-      <p class="center" style="font-size:1.0em;">
-        \[ C=\begin{array}{c|cccc} & d_1 & d_2 & d_3 & \cdots\\ \hline T_1 & 0.12 & -0.34 & 0.08 & \cdots\\ T_2 & -0.27 & 0.15 & 0.41 & \cdots\\ T_3 & 0.05 & 0.22 & -0.19 & \cdots \end{array} \]
-      </p>
-      <aside class="notes">Đây chỉ là ví dụ minh hoạ. Thực tế N là số topic (vd 10) và D là số chiều embedding (vd 384 với all-MiniLM-L6-v2). Ba dấu chấm thể hiện các chiều embedding còn lại bị cắt bớt cho gọn.</aside>
-    </section>
-    <section>
-      <h2>Bước 5: Chiếu từ lên trục ngữ nghĩa</h2>
+      <h2>Bước 5: Chiếu từ lên trục ngữ nghĩa <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Chiếu các từ lên các trục ngữ nghĩa đã phát hiện bằng cách nhân ma trận embedding của từ (<b>V</b>) với ma trận unmixing đã chuyển vị (<b>Cᵀ</b>):</p>
       <p class="center" style="font-size:1.3em;">\[ W = V \cdot C^{\top} \]</p>
       <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.6em;margin:.3em 0;"><code class="language-python"># Embedding của từ vựng (dùng cùng encoder)
@@ -455,21 +459,23 @@ C = np.linalg.pinv(A)
 
 # Chiếu từ lên các trục topic: W = V · Cᵀ  (số_từ × N)
 W = V @ C.T</code></pre>
-      <img src="/NLP/main/VCW.png" alt="Chiếu từ lên trục ngữ nghĩa: V, C, W" style="display:block;margin:.4em auto 0;max-width:74%;max-height:40vh;border-radius:8px;">
-      <aside class="notes">Ý nghĩa: Ma trận C chứa các vector chỉ phương của các trục chủ đề, ma trận V chứa các vector từ vựng. Nên với mỗi từ ngữ j, tích vô hướng của nó với một trục chính là hình chiếu của từ j lên bề mặt trục topic đó. ⇒ W_jt là hình chiếu của vector từ ngữ j lên trục topic T_t. Dữ liệu này dùng để tính word importance (bước 6) ở các slide sau. Bắc cầu sang bước 6: từ W sẽ tính β. W[j,t] chính là vₜ trong hình học Figure 3.</aside>
+      <div class="box idea" style="font-size:.8em;"><span class="lbl">Ý NGHĨA</span>
+        Ma trận <b>C</b> chứa các <b>vector chỉ phương</b> của các trục chủ đề, ma trận <b>V</b> chứa các <b>vector từ vựng</b>. Nên với mỗi từ ngữ <i>j</i>, <b>tích vô hướng</b> của nó với một trục chính là <b>hình chiếu</b> của từ <i>j</i> lên bề mặt trục topic đó.
+        <br>⇒ <b>W<sub>jt</sub></b> là hình chiếu của vector từ ngữ <i>j</i> lên trục topic <b>T<sub>t</sub></b>. Dữ liệu này dùng để tính <b>word importance (bước 6)</b> ở các slide sau.</div>
+      <aside class="notes">Bắc cầu sang bước 6: từ W sẽ tính β. W[j,t] chính là vₜ trong hình học Figure 3.</aside>
     </section>
 
     <!-- Bước 6 (word importance) — gộp vào chùm 6 bước -->
     <section>
-      <h2>Bước 6: Tính điểm quan trọng của từ (word importance) cho từng chủ đề</h2>
+      <h2>Bước 6: Tính điểm quan trọng của từ (word importance) cho từng chủ đề <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Figure 3 của bài: chiếu vector từ <b>v</b> lên trục topic <b>T<sub>t</sub></b> để "chấm điểm" độ quan trọng.</p>
-      <img src="/NLP/main/figure3.png" alt="Figure 3 — hình học 3 cách tính word importance của S³: trục Tt, vector v, hình chiếu vt, góc Theta, độ dài norm v" style="display:block;margin:.2em auto;max-height:340px;width:auto;max-width:88%;border-radius:8px;">
+      <img src="/main/figure3.png" alt="Figure 3 — hình học 3 cách tính word importance của S³: trục Tt, vector v, hình chiếu vt, góc Theta, độ dài norm v" style="display:block;margin:.2em auto;max-height:340px;width:auto;max-width:88%;border-radius:8px;">
       <div class="box tech" style="font-size:.82em;"><span class="lbl">Ý TƯỞNG NGUYÊN BẢN</span>Hình chiếu <b>v<sub>t</sub></b> của vector từ ngữ lên trục <b>T<sub>t</sub></b> càng lớn (tức <b>v<sub>t</sub></b> càng dài) thì điểm <b>β<sub>ax</sub></b> càng cao.<br>Với <b>v<sub>t</sub></b> = hình chiếu của từ lên trục topic · <b>‖v‖</b> = độ dài vector từ · <b>Θ</b> = góc giữa v và trục → sinh ra 3 công thức a) axial, b) angular, c) combined.</div>
       <p class="center"><small>↓ bấm xuống xem 3 công thức</small></p>
       <aside class="notes">Cùng một vector từ, 3 công thức chỉ khác nhau ở cách dùng vt và ‖v‖. Chỉ vào hình khi nói.</aside>
     </section>
     <section>
-      <h2>Bước 6: 3 cách tính word importance</h2>
+      <h2>Bước 6: 3 cách tính word importance <span class="act-badge">ACT 3</span></h2>
       <div class="cols">
         <div class="box tech" style="flex:1"><span class="lbl">① AXIAL</span>\[ \beta_{tj} = W_{jt} \]<small>Từ <b>nổi bật</b> nhất. <span class="win">Coherence cao nhất.</span></small></div>
         <div class="box tech" style="flex:1"><span class="lbl">② ANGULAR</span>\[ \beta_{tj} = \frac{W_{jt}}{\lVert W_j \rVert} \]<small>Từ <b>đặc trưng</b> nhất. <span class="win">Diversity cao nhất.</span></small></div>
@@ -480,12 +486,8 @@ W = V @ C.T</code></pre>
     </section>
     <!-- Tổng hợp code Bước 1–6 -->
     <section>
-      <div class="cols" style="align-items:flex-start;">
-      <div style="flex:.3">
-      <h2 style="text-align:left;">Tổng hợp: Example code cho S³</h2>
-      </div>
-      <div style="flex:.7">
-      <pre style="font-size:.5em;background:#fff;border-radius:8px;padding:.7em;margin:.2em 0;max-height:none;overflow:visible;width:100%;"><code class="language-python" style="max-height:none;overflow:visible;">from sentence_transformers import SentenceTransformer
+      <h2>Tổng hợp: Example code cho S³ <span class="act-badge">ACT 3</span></h2>
+      <pre style="font-size:.46em;background:#fff;border-radius:8px;padding:.7em;margin:.2em 0;"><code class="language-python">from sentence_transformers import SentenceTransformer
 from sklearn.decomposition import FastICA
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
@@ -513,17 +515,7 @@ W = V @ C.T                  # (số_từ × N), W[j,t] = vị trí từ j trên
 
 # Bước 6: điểm quan trọng β (Combined)
 norm = np.linalg.norm(W, axis=1, keepdims=True)   # ‖W_j‖ cho từng từ
-beta = (W ** 3) / norm       # (số_từ × N) — cột t = các từ mô tả topic t
-
-# Bước 7: dùng β để rút mô tả topic — top-k từ theo mỗi cột (trục topic)
-k = 10
-topics = {}
-for t in range(N):
-    top_idx = np.argsort(beta[:, t])[::-1][:k]     # k từ có β cao nhất ở topic t
-    topics[t] = vocabulary[top_idx]                # danh sách từ mô tả topic t
-    print(f"Topic {t}:", ", ".join(topics[t]))</code></pre>
-      </div>
-      </div>
+beta = (W ** 3) / norm       # (số_từ × N) — cột t = các từ mô tả topic t</code></pre>
       <aside class="notes">Chốt chùm thuật toán: toàn bộ 6 bước gói trong ~20 dòng — chỉ encode + phân rã ma trận, không train mạng. (Turftopic đã gói sẵn các bước này.)</aside>
     </section>
   </section>
@@ -532,7 +524,7 @@ for t in range(N):
   <section>
     <!-- 21 · Từ negative -->
     <section>
-      <h2>Từ có độ quan trọng âm (negative importance)</h2>
+      <h2>Từ có độ quan trọng âm (negative importance) <span class="act-badge">ACT 3</span></h2>
       <div class="box idea">
         Khác với một số mô hình topic modelling khác, <b>S³ cho phép từ ngữ mang giá trị importance âm</b> so với một topic. Việc phát hiện các từ ngữ mang thiên hướng <b>bài xích trục chủ đề</b> này góp phần giải thích chủ đề <b>một cách sâu sắc hơn</b> — cho biết chủ đề đó <b>đối lập với cái gì</b> (hoặc <b>không phải là gì</b>).
       </div>
@@ -545,24 +537,26 @@ for t in range(N):
 
     <!-- 22 · Concept Compass (§6.2) -->
     <section>
-      <h2>Concept Compass — bản đồ ngữ nghĩa</h2>
+      <h2>Concept Compass — bản đồ ngữ nghĩa <span class="act-badge">ACT 3 · §6.2</span></h2>
       <div class="cols" style="align-items:center;">
-        <img src="/NLP/main/figure7.png" alt="Figure 7 — Concept Compass: các từ ArXiv đặt trên mặt phẳng 2 trục topic do S³ trích xuất" style="max-height:560px;width:auto;max-width:64%;border-radius:8px;border:1px solid #e2e8f0;">
-        <div class="box key" style="flex:1"><span class="lbl">Figure 7: Các từ ngữ trên các trục ngữ nghĩa được trích xuất bởi S3 trong các bài báo ArXiv</span>
-          Chọn 2 trục topic làm 2 chiều → đặt mọi từ lên một mặt phẳng:<br>
+        <img src="/main/figure7.png" alt="Figure 7 — Concept Compass: các từ ArXiv đặt trên mặt phẳng 2 trục topic do S³ trích xuất" style="max-height:470px;width:auto;max-width:54%;border-radius:8px;border:1px solid #e2e8f0;">
+        <div class="box key" style="flex:1"><span class="lbl">Ý NGHĨA (Figure 7)</span>
+          Chọn <b>2 trục topic</b> làm 2 chiều → đặt mọi từ lên một mặt phẳng:<br>
           • Trục ngang: Vật lý/Sinh học/Thị giác ↔ <b>Ngôn ngữ</b><br>
-          • Trục dọc: Deep Learning ↔ <b>Thuật toán</b>
+          • Trục dọc: Deep Learning ↔ <b>Thuật toán</b><br><br>
+          S³ không chỉ liệt kê topic — nó cho một <b>bản đồ ngữ nghĩa</b> để đặt bất kỳ từ nào lên và xem nó nằm đâu.<br>
+          <b>Điều mà mô hình cụm / xác suất không làm được.</b></div>
       </div>
       <aside class="notes">Bản đồ ngữ nghĩa trực quan. Figure 7 của bài.</aside>
     </section>
 
     <!-- 23 · Table 2 (§6.2) -->
     <section>
-      <h2>Output của S³ — Ví dụ trên ArXiv Papers</h2>
+      <h2>Output của S³ — Ví dụ trên ArXiv Papers <span class="act-badge">ACT 3 · §6.2</span></h2>
       <div class="cols" style="align-items:center;">
-        <img src="/NLP/main/table2.png" alt="Table 2 — các topic trong ArXiv ML Papers do S³ trích xuất, mỗi topic có cột từ dương và từ âm" style="max-height:430px;width:auto;max-width:56%;border-radius:8px;border:1px solid #e2e8f0;">
-        <div class="box idea" style="flex:1"><span class="lbl">Table 2 - Ví dụ output của S3</span>
-          Mỗi topic có <b>top từ dương</b> (hưởng ứng topic) và <b>top từ âm</b> (bài xích topic).<br><br>
+        <img src="/main/table2.png" alt="Table 2 — các topic trong ArXiv ML Papers do S³ trích xuất, mỗi topic có cột từ dương và từ âm" style="max-height:430px;width:auto;max-width:56%;border-radius:8px;border:1px solid #e2e8f0;">
+        <div class="box idea" style="flex:1"><span class="lbl">Table 2</span>
+          Mỗi topic có <b>top từ dương</b> (topic nói về gì) và <b>top từ âm</b> (topic KHÔNG phải gì).<br><br>
           Topic <b>0</b> và <b>4</b> đều có "clustering" ở cột dương — <b>chỉ nhờ cột âm</b> mới phân biệt:<br>
           • Topic 0 ⟂ reinforcement, planning<br>
           • Topic 4 ⟂ cnn, deepmind, convnet<br><br></div>
@@ -573,7 +567,7 @@ for t in range(N):
 
   <!-- 24 · Inference tài liệu mới (đứng riêng) -->
   <section>
-    <h2>Model — Inference tài liệu mới</h2>
+    <h2>Model — Inference tài liệu mới <span class="act-badge">ACT 3</span></h2>
     <p style="font-size:.92em;">Suy luận (<b>inference</b>) tỷ lệ chủ đề trong các tài liệu <b>mới</b> (chưa từng thấy trước đây) có thể đạt được bằng cách nhân embedding của tài liệu mới đó với ma trận unmixing <b>C</b>:</p>
     <div class="step"><b>1.</b> Gọi mã hoá của các tài liệu mới chưa từng thấy là \(\hat{X}\).</div>
     <div class="step"><b>2.</b> Tính toán ma trận tài liệu – chủ đề mới:</div>
@@ -598,7 +592,7 @@ S_hat = X_hat @ C.T
   <!-- S15 setup -->
   <section>
     <section>
-      <h2>Bộ dữ liệu sử dụng</h2>
+      <h2>Bộ dữ liệu sử dụng <span class="act-badge">ACT 4 · THÍ NGHIỆM</span></h2>
       <table>
         <thead><tr><th>Dataset</th><th>Vai trò trong đánh giá</th></tr></thead>
         <tbody>
@@ -631,7 +625,7 @@ S_hat = X_hat @ C.T
   <!-- Mô hình & Baselines (embedding models + topic model đối chứng) -->
   <section>
     <section>
-      <h2>4 Embedding Models</h2>
+      <h2>4 Embedding Models <span class="act-badge">ACT 4 · THÍ NGHIỆM</span></h2>
       <table>
         <thead><tr><th>Model</th><th>Loại</th><th class="num">Dim</th><th>Ghi chú</th></tr></thead>
         <tbody>
@@ -645,7 +639,7 @@ S_hat = X_hat @ C.T
       <aside class="notes">Vì S³ là topic model hoạt động trong không gian embedding, chất lượng embedding rất quan trọng. Paper dùng Averaged GloVe, hai mô hình SBERT là all-MiniLM-L6-v2 và all-mpnet-base-v2, cuối cùng là intfloat/e5-large-v2. Việc dùng nhiều embedding giúp kiểm tra S³ có linh hoạt khi người dùng chọn encoder khác nhau theo tài nguyên và mục tiêu hay không.</aside>
     </section>
     <section>
-      <h2>Các topic models được so sánh</h2>
+      <h2>Các topic models được so sánh <span class="act-badge">ACT 4</span></h2>
       <div class="cols" style="font-size:.8em;">
         <div class="step"><b>Embedding-based</b><br>BERTopic, Top2Vec<br><small>topic như cụm trong không gian embedding</small></div>
         <div class="step"><b>Contextual topic models</b><br>ZeroShotTM, CombinedTM<br><small>contextual embedding, CombinedTM thêm Bag-of-Words</small></div>
@@ -660,40 +654,57 @@ S_hat = X_hat @ C.T
   <!-- Kết quả bằng biểu đồ (Diversity/Coherence, Robustness, Runtime) -->
   <section>
     <section>
-      <h2>Diversity &amp; Coherence</h2>
+      <h2>Diversity &amp; Coherence <span class="act-badge">ACT 4 · BIỂU ĐỒ</span></h2>
       <div class="cols" style="align-items:flex-start;">
-        <div style="flex:1"><img src="/NLP/thien_part/topic_diversity.png" alt="Diversity scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">Topic Diversity (d)</p></div>
-        <div style="flex:1"><img src="/NLP/thien_part/topic_coherence.png" alt="Aggregate coherence scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">Aggregate Coherence C̄ = √(Cex·Cin)</p></div>
+        <div style="flex:1"><img src="/thien_part/topic_diversity.png" alt="Diversity scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">Topic Diversity (d)</p></div>
+        <div style="flex:1"><img src="/thien_part/topic_coherence.png" alt="Aggregate coherence scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">Aggregate Coherence C̄ = √(Cex·Cin)</p></div>
       </div>
+      <div class="box key" style="font-size:.75em;"><span class="lbl">CÁCH ĐỌC</span>Diversity cao nghĩa là các topic ít lặp từ khóa. Coherence cao nghĩa là các từ trong cùng topic liên quan chặt chẽ hơn. S³ nổi bật vì giữ được <b>cân bằng</b> giữa hai hướng này.</div>
       <aside class="notes">Topic Diversity trả lời câu hỏi các topic có bị lặp từ khóa với nhau không. Topic Coherence trả lời câu hỏi các từ trong cùng topic có thực sự liên quan không. Trong paper, coherence gồm external coherence và internal coherence, sau đó kết hợp bằng geometric mean. Điểm quan trọng là một model tốt không chỉ coherent mà còn phải diverse.</aside>
     </section>
     <section>
-      <h2>Robustness — stop words &amp; junk terms</h2>
-      <img src="/NLP/main/stop_word.png" alt="Proportion of stop words" style="display:block;margin:.3em auto;max-height:430px;width:auto;max-width:85%;border-radius:8px;border:1px solid #e2e8f0;">
-      <p class="cap">Khả năng chống chịu nhiễu (stop words) của các Topic Modeling</p>
+      <h2>Robustness — stop words &amp; junk terms <span class="act-badge">ACT 4 · BIỂU ĐỒ</span></h2>
+      <div class="cols" style="align-items:flex-start;">
+        <div style="flex:1"><img src="/thien_part/robustness_wecin.png" alt="WECin scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">WECin</p></div>
+        <div style="flex:1"><img src="/thien_part/robustness_wecex.png" alt="WECex scores across all models, datasets, encoders, and numbers of topics" style="width:100%;border-radius:8px;border:1px solid #e2e8f0;"><p class="cap">WECex</p></div>
+      </div>
+      <div class="box idea" style="font-size:.8em;"><span class="lbl">CÁCH ĐO</span>Kiểm tra tỷ lệ stop words và ký tự không phải alphabet lọt vào top 10 terms. S³, Top2Vec và ECRTM hiếm khi bị nhiễu; LDA, NMF, BERTopic dễ gặp vấn đề hơn trên raw corpus.</div>
       <aside class="notes">Về robustness, paper kiểm tra topic descriptions có chứa nhiều stop words như “the”, “of”, “and”, “to” hay không. Nếu top 10 words chứa quá nhiều stop words thì topic gần như không có giá trị diễn giải. Ngoài ra tác giả kiểm tra cả các từ có ký tự không phải alphabet, dù họ cũng lưu ý metric này không hoàn hảo vì số hoặc ký tự đặc biệt đôi khi vẫn có ý nghĩa.</aside>
     </section>
     <section>
-      <h2>Runtime</h2>
-      <div class="cols" style="align-items:center;">
-        <div style="flex:1.9">
-          <img src="/NLP/thien_part/runtime.png" alt="Runtime in seconds for all models, datasets, encoders, and numbers of topics" style="display:block;margin:0 auto;max-height:520px;width:auto;max-width:100%;border-radius:8px;border:1px solid #e2e8f0;">
-          <p class="cap">Thời gian chạy (tính bằng giây) trên tất cả các mô hình, tập dữ liệu, bộ mã hóa và số lượng chủ đề</p>
-        </div>
-        <div style="flex:1">
-          <div class="box key" style="font-size:.82em;"><span class="lbl">Ý NGHĨA THỰC TẾ</span>Một topic model tốt nhưng chạy quá chậm thì khó triển khai. S³ vừa giữ chất lượng topic, vừa giảm mạnh chi phí tính toán.</div>
-        </div>
-      </div>
+      <h2>Runtime <span class="act-badge">ACT 4 · BIỂU ĐỒ</span></h2>
+      <img src="/thien_part/runtime.png" alt="Runtime in seconds for all models, datasets, encoders, and numbers of topics" style="display:block;margin:.3em auto;max-height:430px;width:auto;max-width:85%;border-radius:8px;border:1px solid #e2e8f0;">
+      <p class="cap">Runtime in seconds across models, datasets, encoders, and numbers of topics</p>
+      <div class="box key" style="font-size:.78em;"><span class="lbl">Ý NGHĨA THỰC TẾ</span>Một topic model tốt nhưng chạy quá chậm thì khó triển khai. S³ vừa giữ chất lượng topic, vừa giảm mạnh chi phí tính toán.</div>
       <aside class="notes">Metric cuối cùng là Runtime. Runtime rất quan trọng trong thực tế vì topic modeling thường được dùng trên corpus lớn. Một model có chất lượng topic tốt nhưng chạy quá chậm thì khó triển khai. Vì vậy paper đánh giá cả chất lượng topic lẫn tốc độ chạy.</aside>
     </section>
   </section>
 
+  <!-- S16 kết quả -->
+  <section data-background-gradient="linear-gradient(135deg,#f0fdf4 0%,#eff6ff 100%)">
+    <h2>Kết quả tổng quát <span class="act-badge">ACT 4</span></h2>
+    <div class="cols center" style="margin:.5em 0;">
+      <div><div class="big-number">4.5×<small>nhanh hơn BERTopic</small></div></div>
+      <div><div class="big-number">27.5×<small>nhanh hơn baselines (trung bình)</small></div></div>
+      <div><div class="big-number">#1<small>điểm tổng hợp cao nhất</small></div></div>
+    </div>
+    <div class="box key"><span class="lbl">CÂN BẰNG TỐI ƯU</span>
+      <ul style="margin:0;">
+        <li><b>Top2Vec:</b> topic khá mạch lạc nhưng nhiều trường hợp <span class="lose">diversity thấp</span>.</li>
+        <li><b>FASTopic, ECRTM:</b> có lúc diversity cao nhưng <span class="lose">coherence thấp hơn</span>.</li>
+        <li><b>S³:</b> <span class="win">nằm giữa hai cực: topic vừa khác nhau, vừa tương đối mạch lạc.</span></li>
+      </ul>
+    </div>
+    <div class="box idea" style="font-size:.82em;"><span class="lbl">THÔNG ĐIỆP</span>S³ không phải lúc nào cũng đứng đầu trên từng metric riêng lẻ, nhưng khi xét tổng hợp giữa diversity, coherence và runtime, S³ là mô hình cân bằng nhất.</div>
+    <aside class="notes">Kết quả tổng quát cho thấy S³ là mô hình cân bằng nhất trong số các mô hình được so sánh. S³ đạt hiệu năng tổng hợp cao hơn các baseline và trung bình nhanh hơn các baseline khoảng 27.5 lần. Nếu so riêng với BERTopic, S³ được báo cáo nhanh hơn khoảng 4.5 lần. Một số mô hình có điểm mạnh riêng nhưng bị lệch: Top2Vec coherent nhưng diversity thấp hơn, FASTopic và ECRTM đôi khi diversity cao nhưng coherence thấp hơn. S³ giữ được sự cân bằng giữa diversity và coherence.</aside>
+  </section>
+
   <!-- S17 kết quả theo corpus -->
   <section>
-    <h2>Kết quả theo từng corpus</h2>
+    <h2>Kết quả theo từng corpus <span class="act-badge">ACT 4</span></h2>
     <div class="cols" style="align-items:center;">
       <div style="flex:.92">
-        <img src="/NLP/thien_part/image.png" alt="Bảng kết quả theo corpus của các mô hình topic modeling" style="display:block;width:100%;max-height:565px;object-fit:contain;border-radius:8px;border:1px solid #e2e8f0;background:#fff;">
+        <img src="/thien_part/image.png" alt="Bảng kết quả theo corpus của các mô hình topic modeling" style="display:block;width:100%;max-height:565px;object-fit:contain;border-radius:8px;border:1px solid #e2e8f0;background:#fff;">
         <p class="cap">Bảng kết quả: d, Cin, Cex và √(C̄·d)</p>
       </div>
       <div style="flex:1.08">
@@ -707,19 +718,20 @@ S_hat = X_hat @ C.T
 
   <!-- S18 preprocessing -->
   <section data-background-gradient="linear-gradient(135deg,#fefce8 0%,#f0fdf4 100%)">
-    <h2>Ảnh hưởng của preprocessing</h2>
+    <h2>Ảnh hưởng của preprocessing <span class="act-badge">ACT 4</span></h2>
     <div class="box key center" style="font-size:1.15em;"><b>S³ hoạt động tốt hơn trên dữ liệu raw</b><br>so với dữ liệu đã preprocessing.</div>
     <ul>
       <li>Các model cổ điển hoặc Bag-of-Words thường cần loại stop words, chuẩn hóa từ, stemming/lemmatization.</li>
       <li>Preprocessing đôi khi làm mất ngữ cảnh, đặc biệt với văn bản ngắn.</li>
       <li>S³ dựa trên contextual embeddings nên tận dụng tốt văn bản tự nhiên, ít phụ thuộc pipeline thủ công.</li>
     </ul>
+    <div class="box say"><span class="lbl">CÂU DẪN</span>Các baseline thường cần dữ liệu đã làm sạch; S³ ngược lại, khi giữ văn bản tự nhiên thì mô hình có thêm ngữ cảnh để khai thác.</div>
     <aside class="notes">Một kết quả quan trọng là S³ hoạt động tốt hơn trên dữ liệu raw so với dữ liệu đã preprocessing. Với LDA hoặc các model dựa trên Bag-of-Words, preprocessing thường rất cần thiết. Nhưng với S³, việc giữ văn bản tự nhiên lại giúp mô hình tận dụng được thông tin ngữ cảnh. Điều này ủng hộ lập luận chính của paper: S³ dựa trên contextual embeddings nên không phụ thuộc quá nhiều vào pipeline tiền xử lý thủ công.</aside>
   </section>
 
   <!-- Ảnh hưởng của embedding models -->
   <section>
-    <h2>Ảnh hưởng của embedding models</h2>
+    <h2>Ảnh hưởng của embedding models <span class="act-badge">ACT 4</span></h2>
     <div class="box key" style="font-size:.83em;"><span class="lbl">S³ ỔN ĐỊNH</span>S³ hoạt động tương đối tốt trên nhiều embedding, kể cả <b>Averaged GloVe</b> không contextual. Điều này cho thấy mô hình không quá phụ thuộc vào một encoder cụ thể.</div>
     <div class="two-col-tight">
       <div class="box warnx" style="font-size:.78em;"><span class="lbl">TOP2VEC</span>Nhạy với lựa chọn embedding, đặc biệt khi đổi sang GloVe hoặc E5-large-v2.</div>
@@ -732,7 +744,7 @@ S_hat = X_hat @ C.T
   <!-- S19 định tính + compass -->
   <!-- S20 kết luận -->
   <section data-background-gradient="linear-gradient(135deg,#eff6ff 0%,#f0fdfa 100%)">
-    <h2>Kết luận phần kết quả</h2>
+    <h2>Kết luận phần kết quả <span class="act-badge">ACT 4</span></h2>
     <div class="cols center" style="font-size:.92em;">
       <div class="box key" style="flex:1"><b>Chất lượng</b><br>Diversity cao + coherence tốt</div>
       <div class="box key" style="flex:1"><b>Tốc độ</b><br>Trung bình nhanh hơn 27.5×</div>

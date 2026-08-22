@@ -428,7 +428,7 @@ W = V @ C.T</code></pre>
     <section>
       <h2>Bước 6: Tính điểm quan trọng của từ (word importance) cho từng chủ đề <span class="act-badge">ACT 3</span></h2>
       <p style="font-size:.9em;">Figure 3 của bài: chiếu vector từ <b>v</b> lên trục topic <b>T<sub>t</sub></b> để "chấm điểm" độ quan trọng.</p>
-      <img src="/NLP/main/figure3.png" alt="Figure 3 — hình học 3 cách tính word importance của S³: trục Tt, vector v, hình chiếu vt, góc Theta, độ dài norm v" style="display:block;margin:.2em auto;max-height:340px;width:auto;max-width:88%;border-radius:8px;">
+      <img src="/main/figure3.png" alt="Figure 3 — hình học 3 cách tính word importance của S³: trục Tt, vector v, hình chiếu vt, góc Theta, độ dài norm v" style="display:block;margin:.2em auto;max-height:340px;width:auto;max-width:88%;border-radius:8px;">
       <div class="box tech" style="font-size:.82em;"><span class="lbl">Ý TƯỞNG NGUYÊN BẢN</span>Hình chiếu <b>v<sub>t</sub></b> của vector từ ngữ lên trục <b>T<sub>t</sub></b> càng lớn (tức <b>v<sub>t</sub></b> càng dài) thì điểm <b>β<sub>ax</sub></b> càng cao.<br>Với <b>v<sub>t</sub></b> = hình chiếu của từ lên trục topic · <b>‖v‖</b> = độ dài vector từ · <b>Θ</b> = góc giữa v và trục → sinh ra 3 công thức a) axial, b) angular, c) combined.</div>
       <p class="center"><small>↓ bấm xuống xem 3 công thức</small></p>
       <aside class="notes">Cùng một vector từ, 3 công thức chỉ khác nhau ở cách dùng vt và ‖v‖. Chỉ vào hình khi nói.</aside>
@@ -464,7 +464,7 @@ W = V @ C.T</code></pre>
     <section>
       <h2>Concept Compass — bản đồ ngữ nghĩa <span class="act-badge">ACT 3 · §6.2</span></h2>
       <div class="cols" style="align-items:center;">
-        <img src="/NLP/main/figure7.png" alt="Figure 7 — Concept Compass: các từ ArXiv đặt trên mặt phẳng 2 trục topic do S³ trích xuất" style="max-height:470px;width:auto;max-width:54%;border-radius:8px;border:1px solid #e2e8f0;">
+        <img src="/main/figure7.png" alt="Figure 7 — Concept Compass: các từ ArXiv đặt trên mặt phẳng 2 trục topic do S³ trích xuất" style="max-height:470px;width:auto;max-width:54%;border-radius:8px;border:1px solid #e2e8f0;">
         <div class="box key" style="flex:1"><span class="lbl">Ý NGHĨA (Figure 7)</span>
           Chọn <b>2 trục topic</b> làm 2 chiều → đặt mọi từ lên một mặt phẳng:<br>
           • Trục ngang: Vật lý/Sinh học/Thị giác ↔ <b>Ngôn ngữ</b><br>
@@ -479,7 +479,7 @@ W = V @ C.T</code></pre>
     <section>
       <h2>Output của S³ — Ví dụ trên ArXiv Papers <span class="act-badge">ACT 3 · §6.2</span></h2>
       <div class="cols" style="align-items:center;">
-        <img src="/NLP/main/table2.png" alt="Table 2 — các topic trong ArXiv ML Papers do S³ trích xuất, mỗi topic có cột từ dương và từ âm" style="max-height:430px;width:auto;max-width:56%;border-radius:8px;border:1px solid #e2e8f0;">
+        <img src="/main/table2.png" alt="Table 2 — các topic trong ArXiv ML Papers do S³ trích xuất, mỗi topic có cột từ dương và từ âm" style="max-height:430px;width:auto;max-width:56%;border-radius:8px;border:1px solid #e2e8f0;">
         <div class="box idea" style="flex:1"><span class="lbl">Table 2</span>
           Mỗi topic có <b>top từ dương</b> (topic nói về gì) và <b>top từ âm</b> (topic KHÔNG phải gì).<br><br>
           Topic <b>0</b> và <b>4</b> đều có "clustering" ở cột dương — <b>chỉ nhờ cột âm</b> mới phân biệt:<br>

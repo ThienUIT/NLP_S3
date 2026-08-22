@@ -1,0 +1,14 @@
+services:
+  s3-router:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts/turftopic/uts-bank-e5/models:/data:ro
+      - ./server/axis_labels.json:/app/axis_labels.json:ro
+    environment:
+      - CHECKPOINT_PATH=/data/model_n30_0255_220826.joblib
+      - AXIS_LABELS_PATH=/app/axis_labels.json
+    restart: unless-stopped

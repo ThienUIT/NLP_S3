@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean
+.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean demo
 
 help:
 	@echo "Targets:"
@@ -16,6 +16,7 @@ help:
 	@echo "  make openpptx    - mo main/main.pptx bang PowerPoint/Keynote"
 	@echo "  make deploy      - deploy len Vercel production (cap nhat / /1 /2 /3 /g...)"
 	@echo "  make clean       - xoa file tam (.vercel/)"
+	@echo "  make demo        - chay Streamlit demo phan tich truc topic S3 (demo/app.py)"
 
 serve:
 	python3 -m http.server $(PORT)
@@ -65,6 +66,9 @@ pptx:
 
 openpptx:
 	open main/main.pptx
+
+demo:
+	.venv/Scripts/python.exe -m streamlit run demo/app.py
 
 deploy:
 	vercel deploy --prod

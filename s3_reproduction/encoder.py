@@ -51,3 +51,54 @@ class CafeBERTEncoder:
                 pooled = torch.nn.functional.normalize(pooled.float(), p=2, dim=1)
             batches.append(pooled.cpu().numpy())
         return np.concatenate(batches, axis=0)
+
+
+def default_prefix(model_name: str) -> str:
+    """Only the E5 family expects a "query: "/"passage: " prefix; applying it
+    to a model that wasn't trained with one (bge-m3, mpnet, Vietnamese SimCSE
+    models) would just glue literal text onto every input and hurt quality.
+    """
+    return "query: " if "e5" in model_name.lower() else ""
+
+
+@dataclass
+class SentenceTransformerEncoder:
+    """Wraps a real sentence-transformers model -- built-in pooling and
+    normalization, no hand-rolled masked-mean-pooling like CafeBERTEncoder
+    needs. CafeBERT is a masked-LM continued-pretrained on Vietnamese, not
+    trained as a sentence embedder (see REPRODUCE.md's own adaptation note);
+    this class is for encoders that ARE. model_name can be any sentence-
+    transformers-compatible checkpoint (multilingual-e5-*, BAAI/bge-m3,
+    paraphrase-multilingual-mpnet-base-v2, Vietnamese-specific SimCSE/bi-
+    encoders...) -- default is multilingual-e5-base, the same encoder family
+    the paper benchmarks (§4.2 uses E5-large-v2), swapped for its
+    multilingual variant so it can encode Vietnamese at all.
+    """
+
+    model_name: str = "intfloat/multilingual-e5-base"
+    batch_size: int = 32
+    max_length: int = 256
+    device: str = "auto"
+    prefix: str | None = None  # None = infer from model_name (see default_prefix)
+
+    def __post_init__(self) -> None:
+        from sentence_transformers import SentenceTransformer
+
+        self.device = (
+            "cuda" if self.device == "auto" and torch.cuda.is_available() else
+            "cpu" if self.device == "auto" else self.device
+        )
+        if self.prefix is None:
+            self.prefix = default_prefix(self.model_name)
+        self.model = SentenceTransformer(self.model_name, device=self.device)
+        self.model.max_seq_length = self.max_length
+
+    def encode(self, texts: list[str], description: str = "Encoding") -> np.ndarray:
+        prefixed = [f"{self.prefix}{text}" for text in texts] if self.prefix else list(texts)
+        return self.model.encode(
+            prefixed, batch_size=self.batch_size, show_progress_bar=True,
+            normalize_embeddings=True, convert_to_numpy=True,
+        )
+
+
+ENCODERS = {"cafebert": CafeBERTEncoder, "e5": SentenceTransformerEncoder}

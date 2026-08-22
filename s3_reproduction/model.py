@@ -47,6 +47,12 @@ class S3TopicModel:
         raise ValueError(f"Phương pháp word importance không hợp lệ: {method}")
 
     @staticmethod
-    def top_words(scores: np.ndarray, vocabulary: list[str], top_n: int = 10) -> list[list[str]]:
+    def top_words(
+        scores: np.ndarray, vocabulary: list[str], top_n: int = 10, positive: bool = True
+    ) -> list[list[str]]:
+        # Paper §3.1: axes have two poles; the lowest-scoring words give a
+        # "negative definition" of the topic, not just noise to discard.
         words = np.asarray(vocabulary)
-        return [words[np.argsort(row)[-top_n:][::-1]].tolist() for row in scores]
+        if positive:
+            return [words[np.argsort(row)[-top_n:][::-1]].tolist() for row in scores]
+        return [words[np.argsort(row)[:top_n]].tolist() for row in scores]

@@ -5,6 +5,7 @@ import csv
 import json
 import math
 import os
+import textwrap
 from pathlib import Path
 
 # Keep Matplotlib's font cache inside the project on restricted Windows setups.
@@ -35,6 +36,9 @@ def load_results(root: Path) -> dict[str, list[dict]]:
         data["aggregate_quality"] = math.sqrt(
             max(float(data["embedding_coherence"]), 0.0) * float(data["topic_diversity"])
         )
+        timing = data.get("timing") or {}
+        data["embedding_seconds"] = timing.get("embedding_seconds")
+        data["model_seconds"] = timing.get("model_seconds")
         grouped.setdefault(str(data["dataset"]), []).append(data)
 
     # Ignore smoke tests/older runs: retain the largest document count per dataset.
@@ -94,28 +98,89 @@ def plot_metrics(grouped: dict[str, list[dict]], output: Path) -> None:
     plt.close(figure)
 
 
+def plot_timing(grouped: dict[str, list[dict]], output: Path) -> None:
+    apply_paper_style()
+    if not any(row.get("model_seconds") is not None for rows in grouped.values() for row in rows):
+        return
+    figure, axis = plt.subplots(figsize=(9, 4.7), constrained_layout=True)
+    width = 0.35
+    datasets = list(grouped.keys())
+    for offset, (dataset, rows) in zip((-width / 2, width / 2), grouped.items()):
+        x = np.arange(len(rows))
+        model_seconds = [float(row.get("model_seconds") or 0) for row in rows]
+        axis.bar(x + offset, model_seconds, width=width, color=COLORS.get(dataset), label=LABELS.get(dataset, dataset))
+        embed_seconds = next((row.get("embedding_seconds") for row in rows if row.get("embedding_seconds")), None)
+        if embed_seconds:
+            axis.axhline(embed_seconds, color=COLORS.get(dataset), linestyle="--", linewidth=1.2, alpha=0.6)
+    any_rows = next(iter(grouped.values()))
+    axis.set_xticks(np.arange(len(any_rows)))
+    axis.set_xticklabels([int(row["n_topics"]) for row in any_rows])
+    axis.set_xlabel("Number of topics")
+    axis.set_ylabel("Seconds")
+    axis.set_title("Model fit time per n_topics (dashed = one-time embedding time)", fontweight="bold")
+    axis.legend(frameon=False, loc="best")
+    figure.savefig(output / "s3_timing.png", dpi=220, bbox_inches="tight")
+    figure.savefig(output / "s3_timing.pdf", bbox_inches="tight")
+    plt.close(figure)
+
+
 def plot_topic_table(dataset: str, result: dict, output: Path) -> None:
     apply_paper_style()
     topics = result["topics"]
-    rows = [[f"Topic {index + 1}", ", ".join(words)] for index, words in enumerate(topics)]
-    height = max(4.5, 0.43 * len(rows) + 1.6)
-    figure, axis = plt.subplots(figsize=(14, height))
+    topics_negative = result.get("topics_negative") or [[] for _ in topics]
+    has_negative = any(topics_negative)
+    # Segmented Vietnamese words can be multi-word phrases ("bảo hành", "nhân
+    # viên phục vụ"), so cells need wrapping now -- plain single-syllable
+    # tokens used to fit on one line, compounds don't.
+    wrap_width = 42 if has_negative else 90
+
+    def wrap(words: list[str]) -> str:
+        return textwrap.fill(", ".join(words), width=wrap_width) if words else ""
+
+    if has_negative:
+        rows = [
+            [f"Topic {index + 1}", wrap(positive), wrap(negative)]
+            for index, (positive, negative) in enumerate(zip(topics, topics_negative))
+        ]
+        col_labels = ["Topic", "Cực dương (+)", "Cực âm (-)"]
+        col_widths = [0.06, 0.47, 0.47]
+    else:
+        rows = [[f"Topic {index + 1}", wrap(words)] for index, words in enumerate(topics)]
+        col_labels = ["Topic", "Top words"]
+        col_widths = [0.08, 0.88]
+    line_counts = [max(cell.count("\n") + 1 for cell in row[1:]) for row in rows]
+    line_height = 0.34
+    row_heights = [max(1, n) * line_height + 0.18 for n in line_counts]
+    height = max(4.5, sum(row_heights) + 1.8)
+    figure, axis = plt.subplots(figsize=(20, height))
     axis.axis("off")
     table = axis.table(
-        cellText=rows, colLabels=["Topic", "Top words"], colWidths=[0.12, 0.84],
+        cellText=rows, colLabels=col_labels, colWidths=col_widths,
         cellLoc="left", colLoc="left", loc="center",
     )
     table.auto_set_font_size(False)
     table.set_fontsize(9.5)
-    table.scale(1, 1.45)
-    for (row, _column), cell in table.get_celld().items():
+    n_cols = len(col_labels)
+    total_height = sum(row_heights) + 0.5
+    for row_index, row_height in enumerate(row_heights, start=1):
+        for col in range(n_cols):
+            table[row_index, col].set_height(row_height / total_height)
+    for col in range(n_cols):
+        table[0, col].set_height(0.5 / total_height)
+    for (row, column), cell in table.get_celld().items():
         cell.set_edgecolor("#D1D5DB")
+        cell.PAD = 0.01
         if row == 0:
             cell.set_facecolor("#111827")
             cell.get_text().set_color("white")
             cell.get_text().set_fontweight("bold")
+        elif has_negative and column == 2:
+            cell.set_facecolor("#FDEDEB" if row % 2 else "#FBE0DC")
+        elif has_negative and column == 1:
+            cell.set_facecolor("#EAF3EA" if row % 2 else "#DCEBDC")
         elif row % 2 == 0:
             cell.set_facecolor("#F3F4F6")
+        cell.get_text().set_verticalalignment("center")
     label = LABELS.get(dataset, dataset)
     axis.set_title(
         f"{label}: {result['n_topics']} topics, {result['documents']:,} documents\n"
@@ -132,7 +197,8 @@ def plot_topic_table(dataset: str, result: dict, output: Path) -> None:
 def write_summary(grouped: dict[str, list[dict]], output: Path) -> None:
     fields = [
         "dataset", "documents", "n_topics", "topic_diversity",
-        "embedding_coherence", "aggregate_quality", "source",
+        "embedding_coherence", "aggregate_quality",
+        "embedding_seconds", "model_seconds", "source",
     ]
     with (output / "metrics.csv").open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
@@ -150,9 +216,15 @@ def write_summary(grouped: dict[str, list[dict]], output: Path) -> None:
                 f"- Best topic count by geometric mean: {best['n_topics']}",
                 f"- Diversity: {best['topic_diversity']:.4f}",
                 f"- Coherence: {best['embedding_coherence']:.4f}",
-                f"- Aggregate interpretability: {best['aggregate_quality']:.4f}", "",
+                f"- Aggregate interpretability: {best['aggregate_quality']:.4f}",
             ]
         )
+        if best.get("model_seconds") is not None:
+            lines.append(
+                f"- Timing (n_topics={best['n_topics']}): mã hoá {best['embedding_seconds']:.1f}s "
+                f"+ fit model {best['model_seconds']:.2f}s"
+            )
+        lines.append("")
     (output / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -163,6 +235,7 @@ def main() -> None:
     if not grouped:
         raise FileNotFoundError(f"No result JSON files found under {args.input_dir}")
     plot_metrics(grouped, args.output_dir)
+    plot_timing(grouped, args.output_dir)
     for dataset, rows in grouped.items():
         best = max(rows, key=lambda row: row["aggregate_quality"])
         plot_topic_table(dataset, best, args.output_dir)

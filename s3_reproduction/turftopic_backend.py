@@ -33,7 +33,8 @@ def fit_turftopic(
     encoder: CafeBERTEncoder,
     n_topics: int,
     random_state: int,
-) -> tuple[SemanticSignalSeparation, list[list[str]]]:
+    top_n: int = 10,
+) -> tuple[SemanticSignalSeparation, list[list[str]], list[list[str]]]:
     cached_encoder = CachedVocabularyEncoder(encoder, vocabulary, vocabulary_embeddings)
     model = SemanticSignalSeparation(
         n_components=n_topics,
@@ -44,9 +45,9 @@ def fit_turftopic(
         random_state=random_state,
     )
     model.fit_transform(documents, embeddings=document_embeddings)
-    topics = [
-        [str(word) for word, _score in terms]
-        for _topic_id, terms in model.get_topics(top_k=10)
-    ]
-    return model, topics
+    # Paper §3.1: axes have two poles; the lowest-scoring words give a
+    # "negative definition" of the topic, not just noise to discard.
+    topics = model.get_top_words(top_k=top_n, positive=True)
+    topics_negative = model.get_top_words(top_k=top_n, positive=False)
+    return model, topics, topics_negative
 

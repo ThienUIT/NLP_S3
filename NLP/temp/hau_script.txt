@@ -1,0 +1,114 @@
+
+
+## Slide 1 — Quá trình phát triển Topic Modeling
+
+Topic modeling đã đi qua 4 giai đoạn. *(chỉ lần lượt)* Đầu tiên — đếm từ, Bag-of-Words. Rồi chuyển sang contextual embedding. Rồi dùng embedding tìm topic, chia 2 nhánh Neural và Clustering. Và cuối cùng — S³, bài báo hôm nay.
+
+Mỗi giai đoạn sau ra đời vì giai đoạn trước có vấn đề. Mình đi nhanh qua.
+
+---
+
+## Slide 2 — Giai đoạn 1: Bag-of-Words
+
+Cách đầu tiên để máy tính "đọc" văn bản: đếm từ, bỏ thứ tự.
+
+*(chỉ bảng)* Như bảng này — 3 câu thành 3 dãy số.
+
+*(chỉ 4 dấu ✕)* Nhưng 4 vấn đề: "mèo đuổi chuột" với "chuột đuổi mèo" cho cùng vector — vì bỏ thứ tự. ví dụ bạc tóc và kho bạc. Ma trận hơn 21 nghìn cột mà hầu hết bằng 0 — tốn bộ nhớ, chạy chậm. Và bắt buộc phải tiền xử lý — mỗi nghiên cứu làm khác nhau nên khó so sánh.
+
+*(chỉ box dưới)* 4 vấn đề này nằm ở cách biểu diễn — thuật toán hay cỡ nào cũng không sửa được. LSA và LDA đều xây trên nền này.
+
+---
+
+## Slide 3 — LSA (1988) & LDA (2003)
+
+(chỉ box trái) LSA — đại số tuyến tính. Ý tưởng: nén ma trận đếm từ xuống K chiều, mỗi chiều là 1 topic. (chỉ dòng công thức) Cách làm: tách ma trận A thành 3 phần — U là tài liệu thuộc topic nào, Sigma là mức quan trọng, V là từ thuộc topic nào. Điểm yếu: 1 trục có thể lẫn nhiều chủ đề, và input vẫn BoW.
+
+(chỉ box phải) LDA — thống kê xác suất. Ý tưởng khác hẳn: mô tả cách tài liệu "được sinh ra" từ hỗn hợp chủ đề, rồi suy ngược lại. Điểm yếu: giả định Dirichlet có thể sai, nhạy tham số, và input vẫn BoW.
+
+(chỉ box vàng) S³ sẽ kế thừa tinh thần LSA — chỉ đổi input và thuật toán. (chỉ box phải) Cả hai bị giới hạn bởi BoW — cần thay đổi cách biểu diễn.
+
+---
+
+## Slide 4 — Giai đoạn 2: Contextual Embedding
+
+Giải pháp: thay đếm từ bằng embedding — BERT 2018, SBERT 2019.
+
+*(chỉ bảng)* Bảng so sánh cho thấy embedding giải quyết gần hết vấn đề của BoW: hiểu ngữ cảnh, hiểu ngữ pháp, không bắt buộc tiền xử lý, vector nhỏ gọn thay vì thưa.
+
+*(chỉ box vàng)* Thêm 1 lợi thế: model đã huấn luyện sẵn trên hàng tỷ câu — mang về dùng trên corpus riêng là dùng được ngay, không cần dữ liệu lớn.
+
+*(chỉ box xanh)* Nhưng embedding chỉ cho mình vector số — chưa nói có bao nhiêu chủ đề. Cần thêm bước tìm topic. Và ở đây giới nghiên cứu chia 2 hướng.
+
+---
+
+## Slide 5 — Giai đoạn 3: Neural vs Clustering
+
+ở giai đoạn 2 chỉ cho ra được vector số chứ ko tìm ra được có bn chủ đề, nên ở gđ 3 sẽ làm việc đó, ở giai đoạn này sẽ chia làm 2 hướng là  neural và clustering. 1 cái Neural thì dùng mạng nơ rol để học ra các topic, còn clustering dùng thuậ toán phân cụm
+
+(chỉ cột trái) Nhánh Neural — 3 model chính. CTM dùng mạng nơ-ron nén rồi tái tạo tài liệu, nhưng tái tạo bằng đếm từ — nên topic ra toàn rác. ECRTM chậm nhất và không dùng contextual embedding. FASTopic nhẹ hơn nhưng hay gộp nhầm chủ đề.
+
+(chỉ cột phải) Nhánh Clustering — tìm cụm tài liệu gần nhau. Top2Vec gán từ khóa bằng tâm cụm. BERTopic dùng c-TF-IDF — lại quay lại đếm từ. Thất bại: có lúc chỉ ra 1 cụm toàn stopword, hoặc 2 cụm cho cả corpus.
+
+
+*(chỉ bar đỏ)* Chung quy: chậm, nhạy tham số, nhiều model vẫn quay lại đếm từ.
+
+---
+
+## Slide 6 — Clustering: Pipeline & Điểm yếu
+
+*(chỉ 3 box)* (chỉ 3 box) Nhánh Clustering chạy qua 3 bước, đầu tiên là UMAP giảm số chiều để tìm cụm dễ hơn, sau đó HDBSCAN sẽ tìm vùng nhiều điểm tụ và mỗi vùng là 1 topic, và cuối cùng là gán từ khóa đại diện cho mỗi cụm.
+
+
+*(chỉ 3 card)* 3 vấn đề hệ thống: quá nhiều tham số không biết chọn. Số topic có thể nổ lên hàng trăm. Và phân cụm sai thì bước gán từ khóa phía sau không cứu được — lỗi cứ chảy xuôi.
+
+Cả 2 nhánh đều có vấn đề. Nhưng quan trọng hơn — chúng có chung 3 thách thức. Và đây mới là phần chính.
+
+---
+
+---
+
+## Slide 7 — 3 Thách thức chung
+
+*(nói chậm lại từ đây)*
+
+3 thách thức này chính là lý do S³ ra đời — hiểu rõ 3 cái này là hiểu vì sao cần S³.
+
+*(chỉ card đỏ)* Thứ nhất: nhạy tham số. Neural có learning rate, epochs, kiến trúc mạng. Clustering có tham số UMAP, HDBSCAN, rồi bước gộp cụm nữa. Mỗi thay đổi nhỏ cho kết quả khác. Mà chưa có ai chỉ ra nên chọn thế nào cho tốt.
+
+*(chỉ card cam)* Thứ hai: vẫn phụ thuộc tiền xử lý. Đây là điểm quan trọng. Nhiều model vẫn dùng BoW hoặc TF-IDF ở đâu đó — CTM thì decoder tái tạo Bag-of-Words, BERTopic dùng c-TF-IDF. Tức là embedding hiểu ngữ cảnh ở đầu vào, nhưng vì giữa pipeline vẫn có bước đếm từ — vấn đề chỉ bị đẩy đi chứ không mất.
+
+*(chỉ card tím)* Thứ ba: chưa biết các model có thực sự tận dụng context không. Vì hầu hết benchmark chạy trên dữ liệu đã tiền xử lý sẵn — đã loại stopword, đã stemming xong. Nên không biết model tốt vì "hiểu context" hay vì "dữ liệu đã sạch." Chưa ai so sánh kết quả trên corpus thô vs đã xử lý.
+
+*(dừng)* Ba cái này chính là "đề bài" mà S³ đặt ra. Giờ xem S³ từ đâu ra và giải thế nào.
+
+---
+
+## Slide 8 — S³ — Hậu duệ contextual của LSA
+
+Trước S³, đã có người dùng ICA trên embedding — nhưng chỉ chứng minh ICA tìm ra trục có ý nghĩa, chưa biến thành topic model. S³ là người làm đầy đủ việc đó.
+
+Như đã nói ở slide 3, S³ đi theo hướng LSA. LSA dùng SVD — tức tách ma trận đếm từ. S³ dùng ICA — tách ma trận embedding.
+
+Khác nhau ở chỗ: SVD cho trục trực giao — điều kiện yếu — 1 trục có thể lẫn nhiều chủ đề. ICA cho trục độc lập — biết trục A nhưng không suy ra được gì về trục B.
+
+Hình dung: 3 người nói cùng lúc, 3 micro thu hỗn hợp, ICA tách ra từng giọng. Tài liệu cũng là hỗn hợp chủ đề — ICA tách ra từng chủ đề.
+
+Đóng góp của S³: biến kỹ thuật tìm trục ngữ nghĩa thành topic model đầy đủ — trục đặc thù corpus, sinh từ khóa, đánh giá chất lượng.
+
+---
+
+## Slide 9 — S³ giải quyết 3 thách thức
+
+*(chỉ bảng)* Bảng này gói lại toàn bộ.
+
+*(chỉ hàng 1)* Nhạy tham số — model cũ nhiều tham số, không biết chọn. *(chỉ cột xanh)* S³ dùng FastICA default của scikit-learn — gần như không cần chỉnh gì.
+
+*(chỉ hàng 2)* Cần tiền xử lý — model cũ vẫn đếm từ ở đâu đó. *(chỉ cột xanh)* S³ không có bước đếm từ nào. Cả tìm topic lẫn gán từ khóa đều làm trên embedding.
+
+*(chỉ hàng 3)* Chưa rõ dùng context — model cũ chỉ test trên dữ liệu đã xử lý sẵn. *(chỉ cột xanh)* S³ test cả 2 — và là model hưởng lợi nhiều nhất khi bỏ tiền xử lý. Kết quả trên corpus thô còn cao hơn các model khác chạy trên dữ liệu đã xử lý.
+
+*(chỉ box xanh dưới)* Điểm mấu chốt: S³ bỏ hoàn toàn đếm từ và TF-IDF khỏi pipeline. Cả tìm topic lẫn gán từ khóa — đều thuần embedding. Đây là khác biệt lớn nhất.
+
+---
+Đó là toàn bộ phần bối cảnh. Giờ mình đi vào S³ hoạt động cụ thể thế nào.

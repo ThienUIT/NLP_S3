@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thông báo phòng ban - S3 Router</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; max-width: 680px; margin: 40px auto; padding: 0 16px; color: #1A222C; }
+  h1 { font-size: 1.4rem; }
+  label { display: inline-block; margin: 6px 0; }
+  select, input, button { font-size: 1rem; padding: 8px 12px; border-radius: 6px; border: 1px solid #C7CDD3; }
+  button { background: #0F7373; color: white; border: none; cursor: pointer; }
+  button:hover { background: #0c5c5c; }
+  #status { color: #5B6672; font-size: 0.9rem; margin: 10px 0 24px; }
+  .alert { border-left: 4px solid #2E7D32; background: #E7F5F3; padding: 12px 16px; margin-bottom: 10px; border-radius: 0 8px 8px 0; }
+  .alert .dept { font-weight: 700; }
+  .alert .meta { color: #5B6672; font-size: 0.82rem; margin-top: 4px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<h1>Thông báo câu hỏi khách hàng theo phòng ban</h1>
+<p>Chọn phòng ban bạn phụ trách -- hệ thống báo (kèm thông báo trình duyệt) mỗi khi có câu hỏi
+mới được định tuyến khớp trục đó. Dùng <code>server/simulate.py</code> để bắn thử câu hỏi mẫu.</p>
+
+<div class="row">
+  <label>Server: <input id="serverUrl" value="ws://localhost:8000/ws" size="28"></label>
+  <label>Phòng ban: <select id="department"><option value="ALL">(đang tải...)</option></select></label>
+  <button id="subscribeBtn">Theo dõi</button>
+</div>
+<p id="status">Chưa kết nối.</p>
+<div id="log"></div>
+
+<script>
+let ws = null;
+
+async function loadDepartments() {
+  const httpUrl = document.getElementById('serverUrl').value
+    .replace('ws://', 'http://').replace('wss://', 'https://').replace('/ws', '/departments');
+  try {
+    const res = await fetch(httpUrl);
+    const depts = await res.json();
+    const select = document.getElementById('department');
+    select.innerHTML = '<option value="ALL">ALL (mọi phòng ban)</option>'
+      + depts.map(d => `<option value="${d}">${d}</option>`).join('');
+  } catch (e) {
+    document.getElementById('status').textContent = 'Không lấy được danh sách phòng ban -- server đã chạy chưa? (' + e + ')';
+  }
+}
+
+function connect() {
+  const url = document.getElementById('serverUrl').value;
+  ws = new WebSocket(url);
+  ws.onopen = () => { document.getElementById('status').textContent = 'Đã kết nối.'; subscribe(); };
+  ws.onclose = () => { document.getElementById('status').textContent = 'Mất kết nối.'; };
+  ws.onerror = () => { document.getElementById('status').textContent = 'Lỗi kết nối tới server.'; };
+  ws.onmessage = (event) => {
+    let data;
+    try { data = JSON.parse(event.data); } catch { return; }
+    if (data.status === 'subscribed') {
+      document.getElementById('status').textContent = `Đang theo dõi: ${data.department}`;
+      return;
+    }
+    addAlert(data);
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(`[${data.department}] Câu hỏi mới`, { body: data.text });
+    }
+  };
+}
+
+function subscribe() {
+  const department = document.getElementById('department').value;
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ subscribe: department }));
+  }
+}
+
+function addAlert(data) {
+  const log = document.getElementById('log');
+  const div = document.createElement('div');
+  div.className = 'alert';
+  div.innerHTML = `<div class="dept">${data.department}</div><div>${data.text}</div>`
+    + `<div class="meta">điểm=${Number(data.score).toFixed(2)} · AUC nhãn=${Number(data.auc).toFixed(2)}</div>`;
+  log.prepend(div);
+}
+
+document.getElementById('subscribeBtn').addEventListener('click', () => {
+  if (!ws || ws.readyState !== WebSocket.OPEN) connect(); else subscribe();
+});
+
+if ('Notification' in window && Notification.permission !== 'granted') {
+  Notification.requestPermission();
+}
+loadDepartments();
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 PORT ?= 8000
 
 .PHONY: help serve main run run2 run3 rungoogle rungoogle1 relation \
-        open open2 opengoogle opengoogle1 openrelation pptx openpptx deploy clean
+        open open2 opengoogle opengoogle1 openrelation pptx openpptx deploy clean demo
 
 help:
 	@echo "=== NLP (S3 - Semantic Signal Separation) — thu muc NLP/ ==="
@@ -23,6 +23,7 @@ help:
 	@echo "  make serve       - chay local server tai http://localhost:$(PORT)/ (PORT=xxxx de doi cong)"
 	@echo "  make deploy      - deploy len Vercel production (/ /nlp /1 /2 /3 /g... /relation)"
 	@echo "  make clean       - xoa file tam (.vercel/)"
+	@echo "  make demo        - chay Streamlit demo phan tich truc topic S3 (demo/app.py)"
 
 serve:
 	python3 -m http.server $(PORT)
@@ -86,6 +87,9 @@ openrelation:
 	open relation/main/index.html
 
 # ---------- chung ----------
+
+demo:
+	.venv/Scripts/python.exe -m streamlit run demo/app.py
 
 deploy:
 	vercel deploy --prod

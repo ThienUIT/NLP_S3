@@ -1,0 +1,48 @@
+{
+  "experiment_id": "cafebert-vietnamese-smoke-v1",
+  "purpose": "Validate real-data loaders, CafeBERT mean pooling, Unicode lexical tokenizer, BERTopic UMAP+KMeans, topic extraction, and author-aligned metrics before the main benchmark.",
+  "corpora": ["vietnamese-news", "visfd", "vi-medical", "vntc-it"],
+  "seed": 42,
+  "n_topics": 10,
+  "top_terms": 10,
+  "models": ["s3_axial", "s3_angular", "s3_combined", "lda", "nmf", "bertopic_kmeans"],
+  "encoder": {
+    "checkpoint": "uitnlp/CafeBERT",
+    "pooling": "attention_mask_mean",
+    "normalize_embeddings": true,
+    "max_length": 256,
+    "batch_size": 32,
+    "batch_ordering": "ascending_character_length_restore_original_order",
+    "dtype": "float32"
+  },
+  "lexical_tokenizer": {
+    "name": "sklearn_unicode_word_hyphen",
+    "CountVectorizer": {
+      "min_df": 10,
+      "token_pattern": "(?u)\\b\\w[\\w-]+\\b",
+      "lowercase": true
+    }
+  },
+  "bertopic_vectorizer": {
+    "name": "sklearn_unicode_word_hyphen_bertopic_representation",
+    "rationale": "BERTopic c-TF-IDF needs a non-degenerate representation vocabulary on the 858-document corpus; this setting affects only BERTopic topic-word extraction, not S3/LDA/NMF fitting or the shared metric tokenizer.",
+    "CountVectorizer": {
+      "min_df": 2,
+      "token_pattern": "(?u)\\b\\w[\\w-]+\\b",
+      "lowercase": true
+    }
+  },
+  "bertopic": {
+    "reducer": "UMAP",
+    "n_neighbors": 15,
+    "n_components": 5,
+    "min_dist": 0.0,
+    "metric": "cosine",
+    "clusterer": "KMeans",
+    "n_init": 10
+  },
+  "visfd": {
+    "target_documents": 10000,
+    "sample_seed": 2026
+  }
+}

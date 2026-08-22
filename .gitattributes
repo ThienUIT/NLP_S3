@@ -2,3 +2,7 @@
 *.csv filter=lfs diff=lfs merge=lfs -text
 *.npy filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
+
+# The benchmark package keeps code, small configuration and reference metrics in Git.
+# Full source data, embeddings and regenerated outputs are ignored and must be fetched.
+benchmark/cafebert_full/** -filter diff merge text

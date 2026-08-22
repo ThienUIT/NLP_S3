@@ -1,0 +1,18 @@
+{
+  "experiment_id": "s3-cafebert-vietnamese-full-v1",
+  "research_question": "Can S3 variants run reliably on four Vietnamese corpora and show competitive WEC-in, topic diversity and end-to-end topic-generation speed relative to LDA, NMF and BERTopic+UMAP+KMeans?",
+  "primary_metric": "WEC-in using Word2Vec trained independently on each corpus",
+  "companion_metrics": ["topic_diversity", "C_NPMI", "alphabetic_term_rate"],
+  "speed_claim_rule": "Only pipeline_seconds and total_cold_seconds may support an end-to-end speed statement; fit_seconds is diagnostic only.",
+  "scope_rule": "Each corpus is analyzed separately. Results do not establish a universal claim for all Vietnamese text or production performance.",
+  "negative_result_rule": "All three S3 variants, all baselines, C_NPMI outcomes and failed configurations remain in the raw output and report.",
+  "matrix": {
+    "corpora": 4,
+    "configurations": 6,
+    "topic_counts": [10, 20, 30, 40, 50],
+    "seeds": [11, 29, 42, 47],
+    "expected_rows": 480
+  },
+  "config_file": "cafebert_full_config.json",
+  "config_sha256_written_by_runner": true
+}

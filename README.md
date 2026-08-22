@@ -88,6 +88,14 @@ Repo đã kết nối Git với Vercel → mỗi `git push` lên `main` sẽ **t
 
 ---
 
+## Benchmark CafeBERT/S³ tái lập
+
+Thư mục [`benchmark/cafebert_full/`](benchmark/cafebert_full/) là pipeline độc lập cho thực nghiệm luận văn: bốn corpus tiếng Việt, sáu cấu hình topic model, WEC-in, diversity, C_NPMI, provenance document-ID và timing theo stage. Pipeline không thay thế `s3_reproduction/` hoặc demo hiện có.
+
+Đọc [hướng dẫn chạy benchmark](benchmark/cafebert_full/README.md) trước. Checkpoint CafeBERT là model pretrained công khai được pin revision và tải lại bằng script; S³ không có checkpoint pretrained riêng trong thực nghiệm này.
+
+---
+
 ## Điều hướng slide
 
 - `→ / ←` hoặc `Space`: chuyển slide kế tiếp/trước.
@@ -95,4 +103,3 @@ Repo đã kết nối Git với Vercel → mỗi `git push` lên `main` sẽ **t
 - `Esc`: xem tổng quan tất cả slide (overview).
 - `F`: toàn màn hình · `S`: speaker notes · `M`: menu nhảy nhanh theo mục.
 - Thanh tiến trình + số thứ tự slide hiển thị ở góc dưới.
-

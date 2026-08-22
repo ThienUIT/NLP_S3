@@ -3,3 +3,7 @@ artifacts/
 __pycache__/
 .pytest_cache/
 *.py[cod]
+benchmark/cafebert_full/results/
+benchmark/cafebert_full/smoke_results/
+benchmark/cafebert_full/sources/
+benchmark/cafebert_full/pretrained/

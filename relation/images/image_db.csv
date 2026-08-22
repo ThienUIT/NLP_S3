@@ -1,30 +1,3 @@
-source,description,size
-images/figure_1.png,"LeWorldModel training pipeline with next-embedding prediction and SIGReg anti-collapse regularization.",1866x704
-images/figure_2.png,"Characteristics and comparison of latent world model approaches including PLDM, DINO-WM, and LeWM.",1668x542
-images/figure_3.png,"Comparison of planning time and success rates under fixed computational budgets.",1834x360
-images/figure_4.png,"Latent planning process with LeWorldModel using a solver to optimize action sequences.",1866x492
-images/figure_5.png,"Evaluation environments including Push-T, OGBench-Cube, Two-Room, and Reacher.",1712x434
-images/figure_6.png,"Planning performance and success rates across various continuous control environments.",1906x482
-images/figure_7.png,"Decoded latent plans showing open-loop predictor rollouts on OGBench-Cube.",1752x552
-images/figure_8.png,"Surprise evaluation for violation-of-expectation across physical and visual perturbations.",1826x480
-images/figure_9.png,"Additional autoregressive predictor rollouts on PushT and OGBench-Cube.",1870x1810
-images/figure_10.png,"Decoder visualization of the latent space representations as training progresses.",1836x1150
-images/figure_11.png,"Example trajectories showing visual and physical perturbations for violation-of-expectation tests.",1886x1724
-images/figure_12.png,"Violation-of-expectation surprise evaluation results over time for the PLDM baseline.",1804x508
-images/figure_13.png,"t-SNE visualization of the LeWM latent space mapping spatial structures in PushT.",1862x854
-images/figure_14.png,"Violation-of-expectation surprise evaluation results over time for the DINO-WM baseline.",1484x364
-images/figure_15.png,"Ablation studies on embedding dimensions, random projections, and integration knots for SIGReg.",1854x480
-images/figure_16.png,"Effect of the SIGReg regularization weight lambda on planning performance in Push-T.",1058x698
-images/figure_17.png,"Evolution of temporal latent path straightening during LeWM and PLDM training.",960x700
-images/figure_18.png,"LeWM training curves showing prediction loss and SIGReg loss over time.",1852x688
-images/figure_19.png,"PLDM training curves showing its complex multi-term loss components over time.",1592x2230
-images/table_1.png,"Results of linear and non-linear probing for physical quantities in the Push-T environment.",1472x628
-images/table_2.png,"Best hyperparameter coefficients discovered for the PLDM baseline via grid search.",706x452
-images/table_3.png,"Latent space probing results for agent position in the TwoRoom environment.",1264x448
-images/table_4.png,"Latent space probing results for physical properties in OGBench-Cube.",1868x1862
-images/table_5.png,"Training variance and mean success rates across multiple random seeds for Push-T.",670x270
-images/table_6.png,"Impact of different predictor model sizes on Push-T planning performance.",592x276
-images/table_7.png,"Impact on planning performance when adding a reconstruction decoder loss during training.",906x207
-images/table_8.png,"Comparison of LeWM planning performance using ViT versus ResNet-18 encoder architectures.",740x220
-images/table_9.png,"Effect of various predictor dropout rates on Push-T planning success.",480x318
-images/table_10.png,"Success rates of different planning solvers such as CEM, SGD, RMSProp, and Adam.",942x328
+version https://git-lfs.github.com/spec/v1
+oid sha256:eb00209036598a968955b33a5a5896de93ee0e0951b43451ae0f66879d9331a1
+size 3352

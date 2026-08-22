@@ -190,7 +190,7 @@ def load_visfd(config: dict[str, Any]) -> CorpusBundle:
             "source": {
                 "repository": "https://github.com/LuongPhan/UIT-ViSFD",
                 "snapshot_commit": "4b11ec2",
-                "archive": str(archive),
+                "archive": archive.name,
                 "splits": ["Train.csv", "Dev.csv", "Test.csv"],
                 "labels_not_used_for_fit": True,
             },

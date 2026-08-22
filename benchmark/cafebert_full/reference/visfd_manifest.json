@@ -9,7 +9,7 @@
   "source": {
     "repository": "https://github.com/LuongPhan/UIT-ViSFD",
     "snapshot_commit": "4b11ec2",
-    "archive": "/home/ubuntu/s3-visfd-label-audit/UIT-ViSFD.zip",
+    "archive": "UIT-ViSFD.zip",
     "splits": [
       "Train.csv",
       "Dev.csv",

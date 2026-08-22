@@ -64,6 +64,14 @@ def latex_escape(text: str) -> str:
     return text.replace("_", "\\_")
 
 
+def portable_repository_path(path: Path) -> str:
+    """Return a repository-relative path when the artifact lives in this clone."""
+    try:
+        return path.resolve().relative_to(ROOT.parents[1]).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def pm(mean: float, sd: float, digits: int = 2) -> str:
     return f"{mean:.{digits}f} $\\pm$ {sd:.{digits}f}"
 
@@ -254,7 +262,7 @@ def main() -> None:
     (OUTPUT_DIR / "TIMING_METHODS_AND_LATEX.md").write_text(methods_markdown(), encoding="utf-8")
     validation = {
         "status": "pass",
-        "source_csv": str(INPUT),
+        "source_csv": portable_repository_path(INPUT),
         "raw_rows": int(len(frame)),
         "summary_rows": int(len(summary)),
         "seed_count": len(SEEDS),

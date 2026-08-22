@@ -6,3 +6,5 @@
 # The benchmark package keeps code, small configuration and reference metrics in Git.
 # Full source data, embeddings and regenerated outputs are ignored and must be fetched.
 benchmark/cafebert_full/** -filter diff merge text
+benchmark/cafebert_full/reference/representation_cache/*.npy -filter -diff -merge -text
+benchmark/cafebert_full/reference/representation_cache/*.npz -filter -diff -merge -text

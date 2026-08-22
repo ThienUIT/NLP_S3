@@ -1,0 +1,48 @@
+{
+  "artifact_type": "audited_cafebert_representation_cache",
+  "result_rows": 480,
+  "unique_representation_artifacts": 8,
+  "files": [
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vi-medical_12060_15f5601e6cb6_lexical.npz",
+      "bytes": 192080,
+      "sha256": "a419e68bef0ab2ca255c3562a46b14dc1536af4da2952382e03b23025fc355a2"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vi-medical_12060_c06dda5b014702137f7d.npy",
+      "bytes": 49397888,
+      "sha256": "bdaf5748a98c273fc0402ef6a65f0dae5fc6d21a5a2f1342fb1dc98c134a9d12"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vietnamese-news_858_3de6721497631976a304.npy",
+      "bytes": 3514496,
+      "sha256": "250445f6c35fe916e9b20dfc6a588ab7f47ac5c635e42205d63be626840df65a"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vietnamese-news_858_4a69f5df5cc5_lexical.npz",
+      "bytes": 9310,
+      "sha256": "0f6610d5739d19ada728159133f197db897af1288bb7d2f1a50cf579817ab3b6"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/visfd_10000_b55da79687299686ecea.npy",
+      "bytes": 40960128,
+      "sha256": "44be27dae0b6d455d1e9483175f8664fca4f6f26fa17eb3ba7244774942409b6"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/visfd_10000_c719fdf08e86_lexical.npz",
+      "bytes": 473227,
+      "sha256": "5c1252c589335e1661b64ebc0ad28193b4b18c143056014587602e70ec60290d"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vntc-it_3571_6fbe5bfbdf1b_lexical.npz",
+      "bytes": 1124696,
+      "sha256": "488aae8671a369dac79b750a692a1e86788290bcefe664add14db4a6d520a4ff"
+    },
+    {
+      "path": "benchmark/cafebert_full/reference/representation_cache/vntc-it_3571_b8d3e50f98cf9c5e7571.npy",
+      "bytes": 14626944,
+      "sha256": "2dd78b20b34c2792ceb3f8c94b07d22419e733c3a85dcf55b88c4b52df91735e"
+    }
+  ],
+  "path_convention": "Repository-root-relative POSIX paths stored in reference/full_results.csv"
+}

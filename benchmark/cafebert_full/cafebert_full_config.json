@@ -9,7 +9,6 @@
   "models": ["s3_axial", "s3_angular", "s3_combined", "lda", "nmf", "bertopic_kmeans"],
   "encoder": {
     "checkpoint": "uitnlp/CafeBERT",
-    "revision": "af76fcf2a04096b2b54b348a3e4eb48253c93c5d",
     "pooling": "attention_mask_mean",
     "normalize_embeddings": true,
     "max_length": 256,

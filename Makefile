@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean demo cafebert-sources cafebert-checkpoint cafebert-smoke cafebert-seed42 cafebert-sensitivity cafebert-audit cafebert-report
+.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean demo cafebert-sources cafebert-checkpoint cafebert-smoke cafebert-seed42 cafebert-sensitivity cafebert-audit cafebert-report cafebert-reference-audit cafebert-reference-report
 
 help:
 	@echo "Targets:"
@@ -24,6 +24,8 @@ help:
 	@echo "  make cafebert-sensitivity- chay seed 11,29,47"
 	@echo "  make cafebert-audit      - audit coverage, metric va provenance"
 	@echo "  make cafebert-report     - sinh report, bieu do va bang LaTeX timing"
+	@echo "  make cafebert-reference-audit  - audit artifact 480 run da commit"
+	@echo "  make cafebert-reference-report - tai sinh report/LaTeX tu artifact da commit"
 
 serve:
 	python3 -m http.server $(PORT)
@@ -99,6 +101,13 @@ cafebert-audit:
 cafebert-report:
 	python3 -m benchmark.cafebert_full.generate_cafebert_full_report
 	python3 -m benchmark.cafebert_full.generate_cafebert_timing_appendix
+
+cafebert-reference-audit:
+	S3_CAFEBERT_RESULTS_DIR="$(CURDIR)/benchmark/cafebert_full/reference" python3 -m benchmark.cafebert_full.audit_cafebert_full
+
+cafebert-reference-report:
+	S3_CAFEBERT_RESULTS_DIR="$(CURDIR)/benchmark/cafebert_full/reference" python3 -m benchmark.cafebert_full.generate_cafebert_full_report
+	S3_CAFEBERT_RESULTS_DIR="$(CURDIR)/benchmark/cafebert_full/reference" python3 -m benchmark.cafebert_full.generate_cafebert_timing_appendix
 
 deploy:
 	vercel deploy --prod

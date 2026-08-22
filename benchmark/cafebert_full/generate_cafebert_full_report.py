@@ -413,12 +413,13 @@ Kết quả thời gian chỉ so sánh được trong môi trường đã ghi t�
 
 ## 8. Tái lập
 
-Các artifact cần để tái lập nằm trong `cafebert_full_results/`: `full_results.csv`, `full_topics.json`, `run_config.json`, các corpus manifest, `environment.json`, `experiment_contract.json`, `FULL_MULTISEED_AUDIT.md`, bảng summary và ba biểu đồ. Lệnh kiểm toán là:
+Các artifact tham chiếu đã kiểm toán nằm trong `benchmark/cafebert_full/reference/`; một lần chạy mới ghi vào `benchmark/cafebert_full/results/` mặc định. Các file gồm `full_results.csv`, `full_topics.json`, `run_config.json`, corpus manifest, `environment.json`, `experiment_contract.json`, báo cáo audit, bảng summary và biểu đồ. Từ root của clone Git, lệnh kiểm toán và tái sinh báo cáo là:
 
 ```bash
-cd /home/ubuntu/s3-vietnamese-multiseed
-python3 audit_cafebert_full.py
-python3 generate_cafebert_full_report.py
+export S3_CAFEBERT_RESULTS_DIR="$PWD/benchmark/cafebert_full/reference"
+python -m benchmark.cafebert_full.audit_cafebert_full
+python -m benchmark.cafebert_full.generate_cafebert_full_report
+python -m benchmark.cafebert_full.generate_cafebert_timing_appendix
 ```
 
 ## Tài liệu tham khảo

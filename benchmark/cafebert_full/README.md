@@ -49,6 +49,19 @@ python -m benchmark.cafebert_full.run_cafebert_full --seeds 11,29,47
 
 The runner resumes by its configuration hash. Do not use `--force` unless a complete, deliberate re-run is intended. Outputs default to `benchmark/cafebert_full/results/`; set `S3_CAFEBERT_RESULTS_DIR` to move them onto a larger disk.
 
+## Verify the committed reference artifact
+
+The repository includes the audited 480-row reference result and eight shared representation files under `benchmark/cafebert_full/reference/`. This verification path does not require the raw corpora or CafeBERT weights. Set the result directory explicitly so the audit and report generators read the committed artifact rather than an empty fresh-run directory:
+
+```bash
+export S3_CAFEBERT_RESULTS_DIR="$PWD/benchmark/cafebert_full/reference"
+python -m benchmark.cafebert_full.audit_cafebert_full
+python -m benchmark.cafebert_full.generate_cafebert_full_report
+python -m benchmark.cafebert_full.generate_cafebert_timing_appendix
+```
+
+Unset `S3_CAFEBERT_RESULTS_DIR` before starting a new experiment, or set it to a separate writable output directory.
+
 ## Audit and reports
 
 ```bash

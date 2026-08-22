@@ -1,0 +1,14 @@
+{
+  "corpus": "vi-medical",
+  "language": "vi",
+  "n_documents": 12060,
+  "available_raw_rows": 12060,
+  "document_ids_sha256": "15f5601e6cb64d461ded353f61131a7395abd361ca4fce9959f42a19b966d614",
+  "minimum_text_chars": 30,
+  "source": {
+    "repository": "https://github.com/PB3002/ViMedical_Disease",
+    "snapshot_commit": "2c2cb3909754a05346625d3b1aed609c1f5e0312",
+    "license": "CC BY-NC-SA 4.0",
+    "text_field": "Question"
+  }
+}

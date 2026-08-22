@@ -1,0 +1,14 @@
+{
+  "corpus": "vietnamese-news",
+  "language": "vi",
+  "n_documents": 858,
+  "document_ids_sha256": "4a69f5df5cc5cee9d68d807eca0f7d5d3c4bd2c42a1637f8e83d3247819a1c7d",
+  "minimum_text_chars": 10,
+  "source": {
+    "repository": "https://huggingface.co/datasets/vanhai123/vietnamese-news-dataset",
+    "revision": "b3169868ffe23537827ec9ae2d8f6f38db437c8d",
+    "text_field": "content",
+    "label_field_not_used_for_fit": "label",
+    "license": "other (research/educational statement on dataset card)"
+  }
+}

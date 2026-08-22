@@ -1,0 +1,14 @@
+{
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "platform": "Linux-6.18.38+-x86_64-with-glibc2.39",
+  "torch": "2.13.0+cu130",
+  "cuda_available": false,
+  "transformers": "4.57.6",
+  "turftopic": "unreported",
+  "bertopic": "0.17.4",
+  "umap": "0.5.12",
+  "sklearn": "1.9.0",
+  "gensim": "4.3.3",
+  "config_sha256": "4bbba1f8131d9c8ed741219255d2985be219ecc9b9368ad84e025bcac1cd840b",
+  "started_at_unix": 1787336823.5237505
+}

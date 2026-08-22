@@ -1,0 +1,18 @@
+{
+  "corpus": "vntc-it",
+  "language": "vi",
+  "n_documents": 3571,
+  "document_ids_sha256": "6fbe5bfbdf1b963816a421668db82d426899d6689adcc353fde88d9d6ff61212",
+  "minimum_text_chars": 150,
+  "source": {
+    "repository": "https://github.com/duyvuleo/VNTC",
+    "snapshot_commit": "533a3d6e1a78d73cde5dcfaf867cf8fe62c1fca8",
+    "license": "MIT",
+    "categories": [
+      "Giai tri tin hoc",
+      "Hackers va Virus",
+      "San pham tin hoc moi"
+    ],
+    "text_field": "full article text"
+  }
+}

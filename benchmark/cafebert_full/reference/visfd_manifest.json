@@ -1,0 +1,20 @@
+{
+  "corpus": "visfd",
+  "language": "vi",
+  "n_documents": 10000,
+  "available_documents_after_filter": 11122,
+  "document_ids_sha256": "c719fdf08e863348f772bc3900112d2708ed736eb526037ad3dd5b5e8f2bdfb8",
+  "minimum_text_chars": 10,
+  "sample_seed": 2026,
+  "source": {
+    "repository": "https://github.com/LuongPhan/UIT-ViSFD",
+    "snapshot_commit": "4b11ec2",
+    "archive": "/home/ubuntu/s3-visfd-label-audit/UIT-ViSFD.zip",
+    "splits": [
+      "Train.csv",
+      "Dev.csv",
+      "Test.csv"
+    ],
+    "labels_not_used_for_fit": true
+  }
+}

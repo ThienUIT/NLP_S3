@@ -1,0 +1,84 @@
+{
+  "experiment_id": "s3-cafebert-vietnamese-full-v1",
+  "purpose": "Full-corpus CafeBERT evaluation of S3 axial/angular/combined, LDA, NMF and BERTopic+UMAP+KMeans on four Vietnamese corpora.",
+  "corpora": [
+    "vietnamese-news",
+    "visfd",
+    "vi-medical",
+    "vntc-it"
+  ],
+  "seeds_primary": [
+    42
+  ],
+  "seeds_sensitivity": [
+    11,
+    29,
+    42,
+    47
+  ],
+  "topic_counts": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "top_terms": 10,
+  "models": [
+    "s3_axial",
+    "s3_angular",
+    "s3_combined",
+    "lda",
+    "nmf",
+    "bertopic_kmeans"
+  ],
+  "encoder": {
+    "checkpoint": "uitnlp/CafeBERT",
+    "pooling": "attention_mask_mean",
+    "normalize_embeddings": true,
+    "max_length": 256,
+    "batch_size": 32,
+    "batch_ordering": "ascending_character_length_restore_original_order",
+    "dtype": "float32"
+  },
+  "lexical_tokenizer": {
+    "name": "sklearn_unicode_word_hyphen",
+    "CountVectorizer": {
+      "min_df": 10,
+      "token_pattern": "(?u)\\b\\w[\\w-]+\\b",
+      "lowercase": true
+    }
+  },
+  "bertopic_vectorizer": {
+    "name": "sklearn_unicode_word_hyphen_bertopic_representation",
+    "rationale": "Fixed min_df=2 only for BERTopic c-TF-IDF topic-word representation because min_df=10 yielded a degenerate c-TF-IDF error on the 858-document corpus during the recorded smoke test. This setting does not affect the shared lexical tokenizer used for WEC-in, C_NPMI, S3, LDA or NMF.",
+    "CountVectorizer": {
+      "min_df": 2,
+      "token_pattern": "(?u)\\b\\w[\\w-]+\\b",
+      "lowercase": true
+    }
+  },
+  "bertopic": {
+    "reducer": "UMAP",
+    "n_neighbors": 15,
+    "n_components": 5,
+    "min_dist": 0.0,
+    "metric": "cosine",
+    "clusterer": "KMeans",
+    "n_init": 10
+  },
+  "visfd": {
+    "target_documents": 10000,
+    "sample_seed": 2026
+  },
+  "runtime_contract": {
+    "network_download_excluded": true,
+    "pipeline_seconds": "representation plus model fit plus top-term extraction, excluding evaluation metrics",
+    "representation_s3_and_bertopic": "CafeBERT encode from local cached weights",
+    "representation_lda_and_nmf": "CountVectorizer.fit_transform",
+    "fit_seconds": "model fit plus topic extraction after representation is ready",
+    "metric_seconds": "WEC-in, topic diversity, C_NPMI and alphabetic audit computed after topic extraction",
+    "total_cold_seconds": "ingest/preprocess plus model loading where applicable plus pipeline_seconds",
+    "shared_representation_policy": "Representation is computed once per corpus and recorded as an immutable cold reference; its measured duration is copied into every comparable row instead of timing a cache hit as zero."
+  }
+}

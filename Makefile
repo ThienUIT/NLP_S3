@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean demo cafebert-sources cafebert-checkpoint cafebert-smoke cafebert-seed42 cafebert-sensitivity cafebert-audit cafebert-report cafebert-reference-audit cafebert-reference-report
+.PHONY: help serve main run run2 run3 rungoogle rungoogle1 open open2 opengoogle opengoogle1 pptx openpptx deploy clean demo cafebert-sources cafebert-checkpoint cafebert-smoke cafebert-seed42 cafebert-sensitivity cafebert-audit cafebert-report cafebert-reference-audit cafebert-reference-report cafebert-paper-tables
 
 help:
 	@echo "Targets:"
@@ -26,6 +26,7 @@ help:
 	@echo "  make cafebert-report     - sinh report, bieu do va bang LaTeX timing"
 	@echo "  make cafebert-reference-audit  - audit artifact 480 run da commit"
 	@echo "  make cafebert-reference-report - tai sinh report/LaTeX tu artifact da commit"
+	@echo "  make cafebert-paper-tables     - sinh bang Results CSV/LaTeX tu full_results.csv"
 
 serve:
 	python3 -m http.server $(PORT)
@@ -108,6 +109,9 @@ cafebert-reference-audit:
 cafebert-reference-report:
 	S3_CAFEBERT_RESULTS_DIR="$(CURDIR)/benchmark/cafebert_full/reference" python3 -m benchmark.cafebert_full.generate_cafebert_full_report
 	S3_CAFEBERT_RESULTS_DIR="$(CURDIR)/benchmark/cafebert_full/reference" python3 -m benchmark.cafebert_full.generate_cafebert_timing_appendix
+
+cafebert-paper-tables:
+	python3 -m benchmark.cafebert_full.build_paper_tables
 
 deploy:
 	vercel deploy --prod
